@@ -1,0 +1,23 @@
+{
+  "name": "lesson-18(node-npm.parcel)",
+  "version": "1.0.0",
+  "description": "- Термінал   - [Шпаргалка 1](https://tproger.ru/translations/bash-cheatsheet/)   - [Шпаргалка 2](https://habr.com/ru/company/ruvds/blog/445270/)   - Відкрити     - `control + ~`     - `view > teminal`   - Основні корисні команди     - шлях (pwd)     - список (ls)     - навигація (cd)     - очистка `clear` или `control + l`     - створення папок (mkdir)     - створення файлів (touch)     - перейменування/переміщення (mv)     - копія (cp)     - видалення (rm)     - дізнатися інформацію про команду (man команда) - Node.js и npm   - установка   - ініціалізація і package.json   - [npmjs.com](https://www.npmjs.com/)   - робота з пакетами     - установка     - видалення   - CommonJS модулі   - npm-скрипти     - pre і post - Транспіляція коду   - CLI и npm-скрипти   - [Babel](https://babeljs.io/)   - [Autoprefixer](https://www.npmjs.com/package/autoprefixer)   - Пресети   - [Browserslist](https://github.com/browserslist/browserslist) - [Сборщик Parcel](https://parceljs.org/) - [ECMAScript модули](https://exploringjs.com/es6/ch_modules.html)   - Дефолтний (default) експорт та імпорт   - Іменований (named) експорт та імпорт   - Імпорт простору імен (namespace)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "autoprefixer": "npx postcss ./css/styles.css --use autoprefixer -d build/css",
+    "start": "npx postcss ./css/styles.css --use autoprefixer -d build/css",
+    "build": "babel ./src/js/index.js -d build/js/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0"
+  }
+}
