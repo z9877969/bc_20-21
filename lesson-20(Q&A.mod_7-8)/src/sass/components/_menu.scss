@@ -1,0 +1,22 @@
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu__item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.menu__link {
+  padding: 12px 20px;
+  border: 1px solid #303030;
+  color: #303030;
+  border-radius: 25px;
+  transition: color 250ms linear, border-color 250ms linear;
+
+  &:hover,
+  &:focus {
+    color: tomato;
+    border-color: tomato;
+  }
+}
