@@ -6,11 +6,26 @@ import createCardsList from '../templates/gallery-card.hbs';
 
 const unsplashApi = new UnsplashApi();
 
-console.log(unsplashApi);
+// console.log(unsplashApi);
 
 const searchFormEl = document.querySelector('.js-search-form');
 const photosListEl = document.querySelector('.js-gallery');
 const loadMoreBtnEl = document.querySelector('.js-load-more');
+
+const mutationObserver = new MutationObserver(mutationRecord => {
+  // mutationRecord[0]
+  mutationRecord.forEach(mutation => {
+    const itemsList = [...mutation.addedNodes].filter(
+      node => node.nodeName !== '#text'
+    );
+
+    setTimeout(() => {
+      itemsList.forEach(item => item.classList.add('appear'));
+    }, 0);
+  });
+});
+
+mutationObserver.observe(photosListEl, { childList: true });
 
 const handleSearchFormSubmit = event => {
   event.preventDefault();
@@ -29,7 +44,6 @@ const handleSearchFormSubmit = event => {
 
   unsplashApi.fetchPhotos().then(data => {
     photosListEl.innerHTML = createCardsList(data.results);
-
     loadMoreBtnEl.classList.remove('is-hidden');
   });
 };
