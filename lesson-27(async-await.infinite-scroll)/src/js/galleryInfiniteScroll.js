@@ -3,18 +3,6 @@
 import { UnsplashApi } from './unsplash-api';
 import createCardsList from '../templates/gallery-card.hbs';
 
-const createListData = () =>
-  Array(20)
-    .fill(null)
-    .map(el => ({
-      urls: {
-        small:
-          'https://i.natgeofe.com/n/46b07b5e-1264-42e1-ae4b-8a021226e2d0/domestic-cat_thumb_square.jpg',
-      },
-      alt_description: 'cat description',
-    }));
-const fetchByListData = () => Promise.resolve(createListData());
-
 const unsplashApi = new UnsplashApi();
 
 const searchFormEl = document.querySelector('.js-search-form');
@@ -23,7 +11,7 @@ const targetEl = document.querySelector('.target-element');
 
 const intersectionOptions = {
   root: null,
-  rootMargin: '0px 0px 0px 0px',
+  rootMargin: '0px 0px 100px 0px',
   threshold: 1.0,
 };
 
@@ -41,10 +29,30 @@ const mutationObserver = new MutationObserver(mutationRecord => {
 });
 
 const intersectionObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
+  entries.forEach(async entry => {
     if (!entry.isIntersecting) return;
 
     console.log(entry);
+
+    unsplashApi.page += 1;
+    try {
+      const data = await unsplashApi.fetchPhotos();
+
+      photosListEl.insertAdjacentHTML(
+        'beforeend',
+        createCardsList(data.results)
+      );
+
+      if (unsplashApi.page === data.total_pages) {
+        observer.unobserve(entry.target);
+        return;
+      }
+
+      observer.unobserve(entry.target);
+      observer.observe(photosListEl.lastElementChild);
+    } catch (error) {
+      console.log(error);
+    }
   });
 }, intersectionOptions);
 
@@ -62,15 +70,13 @@ const handleSearchFormSubmit = async event => {
   unsplashApi.page = 1;
 
   try {
-    // const data = await unsplashApi.fetchPhotos();
-    // photosListEl.innerHTML = createCardsList(data.results);
+    const data = await unsplashApi.fetchPhotos();
+    photosListEl.innerHTML = createCardsList(data.results);
+    // img.src = null -> async request
 
-    const data = await fetchByListData();
-    photosListEl.innerHTML = createCardsList(data);
-
-    setTimeout(() => {
-      intersectionObserver.observe(targetEl);
-    }, 0);
+    // intersectionObserver.observe(targetEl);
+    console.log(photosListEl.lastElementChild);
+    intersectionObserver.observe(photosListEl.lastElementChild);
   } catch (error) {
     console.log(error);
   }
@@ -85,7 +91,6 @@ const renderRandomPhoto = async () => {
   }
 };
 
-// renderRandomPhoto();
-// mutationObserver.observe(photosListEl, { childList: true });
+renderRandomPhoto();
+mutationObserver.observe(photosListEl, { childList: true });
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
-// loadMoreBtnEl.addEventListener('click', handleLoadMoreBtnClick);

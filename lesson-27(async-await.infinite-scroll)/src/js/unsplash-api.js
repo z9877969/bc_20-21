@@ -3,8 +3,7 @@ import axios from 'axios';
 
 export class UnsplashApi {
   #BASE_URL = 'https://api.unsplash.com';
-  // #API_KEY = 'zMIYRNLxU9oWJAVWivTMDZFX4ARkkk973N--TpfxvMA';
-  #API_KEY = '28561602-86e3b026ea867d304dbb7c510';
+  #API_KEY = 'zMIYRNLxU9oWJAVWivTMDZFX4ARkkk973N--TpfxvMA';
   constructor() {
     this.page = 1;
     this.query = null;
@@ -12,27 +11,39 @@ export class UnsplashApi {
   }
 
   fetchPhotos() {
-    axios.defaults.params = {
-      query: this.query, // cat
-      page: this.page,
-      per_page: 12,
-      client_id: this.#API_KEY,
-    };
+    // axios.defaults.params = {
+    //   query: this.query, // cat
+    //   page: this.page,
+    //   per_page: 12,
+    //   client_id: this.#API_KEY,
+    // };
 
     return axios
-      .get(`/search/photos`)
-      .then(response => response.data)
+      .get(`/search/photos`, {
+        params: {
+          query: this.query, // cat
+          page: this.page,
+          per_page: 12,
+          client_id: this.#API_KEY,
+        },
+      })
+      .then(response => response.data);
   }
 
   fetchRandomPhotos() {
-    axios.defaults.params = {
-      count: 12,
-      client_id: this.#API_KEY,
-    };
+    // axios.defaults.params = {
+    //   count: 12,
+    //   client_id: this.#API_KEY,
+    // };
 
     return axios
-      .get(`/photos/random`)
-      .then(response => response.data)
+      .get(`/photos/random`, {
+        params: {
+          count: 12,
+          client_id: this.#API_KEY,
+        },
+      })
+      .then(response => response.data);
   }
 
   increasePage() {
