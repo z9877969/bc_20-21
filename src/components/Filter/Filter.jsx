@@ -1,5 +1,4 @@
 const Filter = ({ options = [] }) => {
-  
   return (
     <ul className="filter">
       {options.map(({ id, title }) => (
