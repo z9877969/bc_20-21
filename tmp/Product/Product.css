@@ -1,0 +1,44 @@
+.products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 700px;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-gap: 15px;
+}
+
+.descr,
+.model {
+  margin: 0;
+}
+
+.product {
+  margin: 0;
+  padding: 5px;
+  background-color: #212121;
+}
+
+.image {
+  display: block;
+  width: 100%;
+}
+
+.descr {
+  padding: 10px;
+  color: bisque;
+}
+
+.btn-bye {
+    font-size: 24px;
+    padding: 10px 20px;
+    border: none;
+    background-color: burlywood;
+    color: rgb(58, 44, 44);
+    border-radius: 3px;
+}
+
+.btn-bye:active {
+    transform: scale(0.95);
+}
+

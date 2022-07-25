@@ -1,1 +1,0 @@
-{"mappings":"ACAA;;;;ADEA","sources":["src/sass/main.scss","src/sass/_common.scss"],"sourcesContent":["@import \"common\";\n\n.header {\n  background-color: green;\n  padding: 20px;\n  font-size: 20px;\n}\n",null],"names":[],"version":3,"file":"index.f7626f62.css.map","sourceRoot":"/__parcel_source_root/"}

@@ -1,1 +1,0 @@
-{"mappings":"AAAA,6BAA6B;AAE7B,OAAO,CAAC,GAAG,CAAC,QAAQ,CAAC,CAAC","sources":["src/index.js"],"sourcesContent":["// import \"./sass/main.scss\";\n\nconsole.log(\"object\");\n"],"names":[],"version":3,"file":"index.579125c3.js.map","sourceRoot":"/__parcel_source_root/"}
