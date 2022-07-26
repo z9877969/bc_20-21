@@ -1,8 +1,7 @@
 .cart {
   position: absolute;
   top: 0;
-  /* left: 100%; */
-  right: 0;
+  left: 100%;
   width: 400px;
   height: 500px;
   background-color: darkslategray;
@@ -45,11 +44,6 @@
   margin-bottom: 20px;
 }
 
-.cart-descr,
-.cart-model {
-  margin: 0;
-}
-
 .cart-product {
   display: flex;
   /* justify-content: space-between; */
@@ -67,6 +61,11 @@
 .cart-image {
   width: 70px;
   height: 100%;
+}
+
+.cart-descr,
+.cart-model {
+  margin: 0;
 }
 
 .cart-descr {

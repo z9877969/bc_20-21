@@ -1,21 +1,16 @@
 import ProductsListItem from "../ProductsListItem/ProductsListItem";
+import { ProductsListStyled } from "./ProductsList.styled";
+// import "./Products.css";
 
 const ProductsList = (props) => {
   const { products } = props;
   return (
     <section>
-      <ul className="products">
+      <ProductsListStyled>
         {products.map((el) => (
-          <ProductsListItem
-            key={el.id}
-            // url={el.url}
-            // model={el.model}
-            // price={el.price}
-            // currency={el.currency}
-            {...el}
-          />
+          <ProductsListItem key={el.id} {...el} />
         ))}
-      </ul>
+      </ProductsListStyled>
     </section>
   );
 };

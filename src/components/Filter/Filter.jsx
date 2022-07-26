@@ -1,22 +1,38 @@
+import PropTypes from "prop-types";
+import s from "./Filter.module.css";
+
 const Filter = ({ options = [] }) => {
   return (
-    <ul className="filter">
+    <ul className={s.filter}>
       {options.map(({ id, title }) => (
-        <li className="filter-item" key={id}>
-          <label className="filter-label" htmlFor={id}>
-            {title}
-          </label>
+        <li className={s.item} key={id}>
           <input
-            className="filter-input"
+            className={s.input}
             name="filter"
             value={id}
             type="checkbox"
             id={id}
           />
+          <label className={s.label} htmlFor={id}>
+            {title}
+          </label>
         </li>
       ))}
     </ul>
   );
+};
+
+// Filter.defaultProps = {
+//   options: [],
+// };
+
+Filter.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+    })
+  ),
 };
 
 export default Filter;

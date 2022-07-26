@@ -4,35 +4,11 @@ import "./index.css";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 
-
-
-// const nav = React.createElement(
-//   "nav",
-//   { className: "header__nav" },
-//   React.createElement("img", {
-//     src: "logo",
-//     className: "App-logo",
-//     alt: "logo",
-//   }),
-//   React.createElement(
-//     "ul",
-//     null,
-//     React.createElement(
-//       "li",
-//       null,
-//       React.createElement("a", { href: "#" }, "Link-1")
-//     )
-//   )
-// );
-
-// const header = React.createElement("header", { id: "header-id" }, nav);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <App />
-    {/* {header} */}
-    {/* header */}
   </React.StrictMode>
 );
 

@@ -3,12 +3,13 @@ import ProductsList from "../ProductsList/ProductsList";
 import products from "../../data/products.json";
 import filterOptions from "../../data/filterOptions.json";
 
+const mainStyles = { display: "flex", justifyContent: "center" };
+
 const Main = () => {
   return (
-    <main>
+    <main style={mainStyles}>
       <Filter options={filterOptions} />
       <ProductsList products={products} />
-      {/* {ProductsList({ a: 21, b: "qwe", c: true })} */}
     </main>
   );
 };

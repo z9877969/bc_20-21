@@ -2,7 +2,7 @@
   {
     "id": 1,
     "url": "https://content.rozetka.com.ua/goods/images/big/37406402.jpg",
-    "price": false,
+    "price": null,
     "currency": "UAH",
     "model": "iPhone 11",
     "type": "apple"
