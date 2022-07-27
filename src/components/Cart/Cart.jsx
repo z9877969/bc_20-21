@@ -7,57 +7,57 @@ import {
   StyledBtnOrder,
 } from "./Cart.styled";
 import sprite from "../../assets/icons/sprite.svg";
+import PropTypes from "prop-types";
 
-const Cart = () => {
-  const isOpen = false;
+const Cart = ({
+  cartProducts,
+  isCartOpen,
+  handleCloseCart,
+  handleRemoveProduct,
+}) => {
+  console.log("CART");
   return (
-    <StyledCartContainer isOpen={isOpen ? true : false}>
-      <StyledBtnClose type="button">
+    <StyledCartContainer isOpen={isCartOpen}>
+      <StyledBtnClose type="button" onClick={handleCloseCart}>
         <svg class="icon-close">
           <use href={sprite + "#icon-cross"}></use>
         </svg>
       </StyledBtnClose>
       <StyledProductsList class="cart-products">
-        <StyledProductItem class="cart-product">
-          <img
-            class="cart-image"
-            src="https://content1.rozetka.com.ua/goods/images/big/238782224.jpg"
-            alt=""
-          />
-          <div class="cart-descr">
-            <h3 class="cart-model">ZTE RedMagic</h3>
-            <span class="cart-price">11999</span>
-            <span class="cart-currency">UAH</span>
-          </div>
-          <StyledBtnRemove class="cart-btn-remove" type="button">
-            <svg class="icon-remove">
-              <use href={sprite + "#icon-cross"}></use>
-            </svg>
-          </StyledBtnRemove>
-        </StyledProductItem>
-        <StyledProductItem class="cart-product">
-          <img
-            class="cart-image"
-            src="https://content1.rozetka.com.ua/goods/images/big/238782224.jpg"
-            alt=""
-          />
-          <div class="cart-descr">
-            <h3 class="cart-model">ZTE RedMagic</h3>
-            <span class="cart-price">11999</span>
-            <span class="cart-currency">UAH</span>
-          </div>
-          <StyledBtnRemove class="cart-btn-remove" type="button">
-            <svg class="icon-remove">
-              <use href={sprite + "#icon-cross"}></use>
-            </svg>
-          </StyledBtnRemove>
-        </StyledProductItem>
+        {cartProducts.map((product) => (
+          <StyledProductItem class="cart-product" key={product.id}>
+            <img class="cart-image" src={product.url} alt="" />
+            <div class="cart-descr">
+              <h3 class="cart-model">{product.model}</h3>
+              <span class="cart-price">{product.price}</span>
+              <span class="cart-currency">{product.currency}</span>
+            </div>
+            <StyledBtnRemove
+              onClick={() => {
+                handleRemoveProduct(product.id);
+              }}
+              class="cart-btn-remove"
+              type="button"
+            >
+              <svg class="icon-remove">
+                <use href={sprite + "#icon-cross"}></use>
+              </svg>
+            </StyledBtnRemove>
+          </StyledProductItem>
+        ))}
       </StyledProductsList>
       <StyledBtnOrder class="cart-btn-order" type="button">
         Замовити
       </StyledBtnOrder>
     </StyledCartContainer>
   );
+};
+
+Cart.propTypes = {
+  isCartOpen: PropTypes.bool.isRequired,
+  cartProducts: PropTypes.array.isRequired,
+  handleCloseCart: PropTypes.func.isRequired,
+  handleRemoveProduct: PropTypes.func.isRequired,
 };
 
 export default Cart;

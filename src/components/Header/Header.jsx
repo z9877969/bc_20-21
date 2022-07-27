@@ -1,10 +1,14 @@
+import PropTypes from "prop-types";
 import styles from "./Header.module.css";
 import logoImg from "../../assets/img/logo.png";
 import sprite from "../../assets/icons/sprite.svg";
 
-console.log(logoImg);
-
-const Header = () => {
+const Header = ({ handleOpenCart }) => {
+  console.log("HEADER");
+  for (let i = 0; i < 1e9; i += 1) {
+    let n = 0;
+    n += i;
+  }
   return (
     <header className={styles.header}>
       <a href="#" className={styles.logo}>
@@ -15,7 +19,11 @@ const Header = () => {
         <span className={styles["user-email"]}>user@mail.com</span>
       </div>
       <div className={styles["cart-info"]}>
-        <button type="button" className={styles["btn-cart"]}>
+        <button
+          onClick={handleOpenCart}
+          type="button"
+          className={styles["btn-cart"]}
+        >
           <svg>
             <use href={`${sprite}#icon-cart`}></use>
           </svg>
@@ -24,6 +32,10 @@ const Header = () => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  handleOpenCart: PropTypes.func.isRequired,
 };
 
 export default Header;

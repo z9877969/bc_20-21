@@ -4,7 +4,14 @@ import {
   StyledBtnBye,
 } from "./ProductsListItem.styled";
 
-const ProductsListItem = ({ url, model, price, currency }) => {
+const ProductsListItem = ({
+  url,
+  model,
+  price,
+  currency,
+  id,
+  handleAddProductToCart,
+}) => {
   return (
     <StyledItem>
       <img className="image" src={url} alt={model} />
@@ -18,8 +25,10 @@ const ProductsListItem = ({ url, model, price, currency }) => {
         </StyledDescr>
         <StyledBtnBye
           type="button"
-          // style={{ color: !price && "red" }}
           price={price}
+          onClick={() =>
+            handleAddProductToCart({ id, url, model, price, currency })
+          }
         >
           {price ? "Купити" : "Продано"}
         </StyledBtnBye>
