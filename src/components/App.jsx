@@ -1,49 +1,33 @@
 import { Component } from "react";
 import Header from "./Header/Header";
-import Main from "./Main/Main";
-import Cart from "./Cart/Cart";
+import ShopPage from "./ShopPage/ShopPage";
+import TodoPage from "./TodoPage/TodoPage";
 // import Counter from "./Counter/Counter";
 
 class App extends Component {
   state = {
-    isCartOpen: false,
-    cartProducts: [],
+    activePage: "shop",
+    isOpenCart: false,
   };
 
-  handleAddProductToCart = (product) => {
-    this.setState((prevState) => ({
-      cartProducts: [...prevState.cartProducts, product],
-    }));
-  };
-
-  handleRemoveProduct = (id) => {
-    this.setState((prevState) => ({
-      cartProducts: prevState.cartProducts.filter((el) => el.id !== id),
-    }));
+  handleOpenActivePage = (activePage) => {
+    this.setState({ activePage });
   };
 
   handleOpenCart = () => {
-    this.setState({ isCartOpen: true });
-  };
-
-  handleCloseCart = () => {
-    this.setState({ isCartOpen: false });
+    this.setState({ isOpenCart: true });
   };
 
   render() {
-    const { isCartOpen, cartProducts } = this.state;
-
+    const { activePage, isOpenCart } = this.state;
     return (
       <>
-        <Header handleOpenCart={this.handleOpenCart} />
-        <Main handleAddProductToCart={this.handleAddProductToCart} />
-        <Cart
-          cartProducts={cartProducts}
-          isCartOpen={isCartOpen}
-          handleCloseCart={this.handleCloseCart}
-          handleRemoveProduct={this.handleRemoveProduct}
+        <Header
+          handleOpenCart={this.handleOpenCart}
+          handleOpenActivePage={this.handleOpenActivePage}
         />
-        {/* <Counter /> */}
+        {activePage === "todo" && <TodoPage />}
+        {activePage === "shop" && <ShopPage isOpenCart={isOpenCart} handleOpenCart />}
       </>
     );
   }

@@ -5,7 +5,7 @@ import { ProductsListStyled } from "./ProductsList.styled";
 
 const ProductsList = (props) => {
   const { products, handleAddProductToCart } = props;
-  console.log("PRODUCTS_LIST");
+  
   return (
     <section>
       <ProductsListStyled>

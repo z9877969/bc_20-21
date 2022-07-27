@@ -1,19 +1,16 @@
 import PropTypes from "prop-types";
+import Navigation from "../Navigation/Navigation";
 import styles from "./Header.module.css";
 import logoImg from "../../assets/img/logo.png";
 import sprite from "../../assets/icons/sprite.svg";
 
-const Header = ({ handleOpenCart }) => {
-  console.log("HEADER");
-  for (let i = 0; i < 1e9; i += 1) {
-    let n = 0;
-    n += i;
-  }
+const Header = ({ handleOpenCart, handleOpenActivePage }) => {
   return (
     <header className={styles.header}>
-      <a href="#" className={styles.logo}>
+      <a href="https://" className={styles.logo}>
         <img src={logoImg} alt="" />
       </a>
+      <Navigation handleOpenActivePage={handleOpenActivePage} />
       <div className={styles["user-info"]}>
         <span className={styles["user-name"]}>B</span>
         <span className={styles["user-email"]}>user@mail.com</span>
@@ -36,6 +33,7 @@ const Header = ({ handleOpenCart }) => {
 
 Header.propTypes = {
   handleOpenCart: PropTypes.func.isRequired,
+  handleOpenActivePage: PropTypes.func.isRequired,
 };
 
 export default Header;

@@ -1,0 +1,38 @@
+.close {
+  display: inline-block;
+  color: red;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 800px;
+}
+
+.toDoItem {
+  width: 250px;
+  padding: 10px;
+  background-color: rgb(167, 164, 164);
+  margin-bottom: 10px;
+  color: rgb(61, 56, 10);
+}
+
+.date,
+.title,
+.descr {
+  width: 100%;
+  padding: 5px;
+}
+
+.toDoBtn {
+  width: 45%;
+  padding: 5px 10px;
+  margin: 0 auto;
+  color: rgb(124, 55, 55);
+  background-color: khaki;
+  cursor: pointer;
+}

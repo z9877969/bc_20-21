@@ -1,7 +1,8 @@
-1) statefull vs stateless
-2) counter
-3) open cart
-4) add product vulue
-5) add product to cart
+1) form
+2) controled inputs
+3) text || radio || checkbox
+4) submit to collection
+5) filter -> checkbox
+6) select
 
-6) filter
+7) filter to shop
