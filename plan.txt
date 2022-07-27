@@ -3,6 +3,4 @@
 3) text || radio || checkbox
 4) submit to collection
 5) filter -> checkbox
-6) select
-
-7) filter to shop
+6) select for todos filter

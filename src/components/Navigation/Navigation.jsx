@@ -1,23 +1,26 @@
 import PropTypes from "prop-types";
+import s from "./Navigation.module.scss";
 
 const Navigation = ({ handleOpenActivePage }) => {
   return (
-    <nav className="nav">
-      <ul className="nav-list">
-        <li className="nav-item">
+    <nav className={s.nav}>
+      <ul className={s.navList}>
+        <li className={s.navItem}>
           <a
             href="/"
+            className={s.navLink}
             onClick={(e) => {
               e.preventDefault();
-              handleOpenActivePage("shop");
+              handleOpenActivePage("home");
             }}
           >
-            Shop
+            Home
           </a>
         </li>
-        <li className="nav-item">
+        <li className={s.navItem}>
           <a
             href="/"
+            className={s.navLink}
             onClick={(e) => {
               e.preventDefault();
               handleOpenActivePage("todo");
