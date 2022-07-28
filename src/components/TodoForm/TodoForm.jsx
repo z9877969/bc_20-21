@@ -3,40 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 // import moment from "moment";
 import s from "./TodoForm.module.scss";
 
-console.log(new Date().toLocaleDateString()); // "2022-07-28"
-
-// const options = [
-//   {
-//     title: "Date",
-//     name: "date",
-//     type: "date",
-//   },
-//   {
-//     title: "Title",
-//     name: "title",
-//     type: "text",
-//   },
-//   {
-//     title: "Description",
-//     name: "descr",
-//     type: "text",
-//   },
-// ];
-
-// const Inputs = ({ options, cbOnChange, formData }) => {
-//   return options.map(({ title, name, type }) => (
-//     <label className={s.label}>
-//       <span> {title} </span>
-//       <input
-//         className={s.input}
-//         type={type}
-//         name={name}
-//         value={formData[name]}
-//         onChange={cbOnChange}
-//       />
-//     </label>
-//   ));
-// };
+// console.log(moment().format); // "2022-07-28"
 
 const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 

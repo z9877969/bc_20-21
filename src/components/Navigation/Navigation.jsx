@@ -11,10 +11,10 @@ const Navigation = ({ handleOpenActivePage }) => {
             className={s.navLink}
             onClick={(e) => {
               e.preventDefault();
-              handleOpenActivePage("home");
+              handleOpenActivePage("shop");
             }}
           >
-            Home
+            Shop
           </a>
         </li>
         <li className={s.navItem}>

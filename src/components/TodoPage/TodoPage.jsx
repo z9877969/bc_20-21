@@ -9,7 +9,6 @@ class TodoPage extends Component {
   };
 
   addTodo = (newTodo) => {
-    // console.log(newTodo);
     this.setState((prevState) => ({ todo: [...prevState.todo, newTodo] }));
   };
 
@@ -20,7 +19,6 @@ class TodoPage extends Component {
   };
 
   updateStatus = (id) => {
-    console.log(id);
     this.setState((prevState) => ({
       todo: prevState.todo.map((el) =>
         el.id === id ? { ...el, isDoneStatus: !el.isDoneStatus } : el

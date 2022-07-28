@@ -24,14 +24,20 @@
 .title,
 .descr,
 .priority {
+  margin: 0;
   padding: 5px;
 }
 
 .title,
-.descr {
+.descr,
+.priority {
   &.isDone {
     text-decoration: line-through;
   }
+}
+
+.priority span {
+  text-transform: uppercase;
 }
 
 .todoBtn {
