@@ -8,7 +8,7 @@ class App extends Component {
   };
 
   handleOpenActivePage = (activePage) => {
-    this.setState({ activePage });
+    this.setState({ activePage: activePage });
   };
 
   render() {
