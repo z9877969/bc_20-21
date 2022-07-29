@@ -5,7 +5,7 @@ import TodoPage from "./TodoPage/TodoPage";
 
 class App extends Component {
   state = {
-    activePage: "todo",
+    activePage: "shop",
     isCartOpen: false,
   };
 

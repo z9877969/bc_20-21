@@ -1,13 +1,17 @@
 import { Component } from "react";
 import { v4 as uuidv4 } from "uuid";
-// import moment from "moment";
+import moment from "moment";
 import s from "./TodoForm.module.scss";
 
-// console.log(moment().format); // "2022-07-28"
-
-const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
+const curDate = moment().format("YYYY-MM-DD");
 
 class TodoForm extends Component {
+  static priority = {
+    LOW: "low",
+    MEDIUM: "medium",
+    HIGH: "high",
+  };
+
   state = {
     date: curDate,
     title: "",
@@ -37,7 +41,7 @@ class TodoForm extends Component {
             className={s.input}
             type="date"
             name="date"
-            value={date}
+            value={date} // 2022-07-28
             onChange={this.handleChange}
           />
         </label>
@@ -69,8 +73,8 @@ class TodoForm extends Component {
               className={s.input}
               type="radio"
               name="priority"
-              value="low"
-              checked={"low" === this.state.priority} // "low" === this.state.priority
+              value={TodoForm.priority.LOW}
+              checked={TodoForm.priority.LOW === this.state.priority} // "low" === this.state.priority
               onChange={this.handleChange}
             />
             <label className={`${s.label} ${s.radio}`} htmlFor="formRadioLow">
@@ -83,8 +87,8 @@ class TodoForm extends Component {
               className={s.input}
               type="radio"
               name="priority"
-              value="medium"
-              checked={"medium" === this.state.priority}
+              value={TodoForm.priority.MEDIUM}
+              checked={TodoForm.priority.MEDIUM === this.state.priority}
               onChange={this.handleChange}
             />
             <label
@@ -100,8 +104,8 @@ class TodoForm extends Component {
               className={s.input}
               type="radio"
               name="priority"
-              value="high"
-              checked={"high" === this.state.priority}
+              value={TodoForm.priority.HIGH}
+              checked={TodoForm.priority.HIGH === this.state.priority}
               onChange={this.handleChange}
             />
             <label className={`${s.label} ${s.radio}`} htmlFor="formRadioHigh">

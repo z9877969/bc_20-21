@@ -2,10 +2,12 @@ import { Component } from "react";
 import ToDoForm from "../TodoForm/TodoForm";
 import ToDoList from "../TodoList/TodoList";
 import { todo as todoList } from "../../data/todo";
+import TodoForm from "../TodoForm/TodoForm";
 
 class TodoPage extends Component {
   state = {
     todo: todoList,
+    filter: "all",
   };
 
   addTodo = (newTodo) => {
@@ -26,13 +28,32 @@ class TodoPage extends Component {
     }));
   };
 
+  handleChange = (e) => {
+    const { value } = e.target;
+
+    this.setState({ filter: value });
+  };
+
+  filterTodosByPriority = () => {
+    const { todo, filter } = this.state;
+    if (filter === "all") return todo;
+    return todo.filter((el) => el.priority === filter);
+  };
+
   render() {
-    const { todo } = this.state;
+    const { filter } = this.state;
+    const filteredTodos = this.filterTodosByPriority();
     return (
       <>
         <ToDoForm addTodo={this.addTodo} />
+        <select name="filter" value={filter} onChange={this.handleChange}>
+          <option value="all">ALL</option>
+          <option value={TodoForm.priority.LOW}>LOW</option>
+          <option value={TodoForm.priority.MEDIUM}>MEDIUM</option>
+          <option value={TodoForm.priority.HIGH}>HIGH</option>
+        </select>
         <ToDoList
-          todo={todo}
+          todo={filteredTodos}
           removeTodo={this.removeTodo}
           updateStatus={this.updateStatus}
         />

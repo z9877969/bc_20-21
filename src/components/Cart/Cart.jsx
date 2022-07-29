@@ -18,34 +18,34 @@ const Cart = ({
   return (
     <StyledCartContainer isOpen={isCartOpen}>
       <StyledBtnClose type="button" onClick={handleCloseCart}>
-        <svg class="icon-close">
+        <svg className="icon-close">
           <use href={sprite + "#icon-cross"}></use>
         </svg>
       </StyledBtnClose>
-      <StyledProductsList class="cart-products">
+      <StyledProductsList className="cart-products">
         {cartProducts.map((product) => (
-          <StyledProductItem class="cart-product" key={product.id}>
-            <img class="cart-image" src={product.url} alt="" />
-            <div class="cart-descr">
-              <h3 class="cart-model">{product.model}</h3>
-              <span class="cart-price">{product.price}</span>
-              <span class="cart-currency">{product.currency}</span>
+          <StyledProductItem className="cart-product" key={product.id}>
+            <img className="cart-image" src={product.url} alt="" />
+            <div className="cart-descr">
+              <h3 className="cart-model">{product.model}</h3>
+              <span className="cart-price">{product.price}</span>
+              <span className="cart-currency">{product.currency}</span>
             </div>
             <StyledBtnRemove
               onClick={() => {
                 handleRemoveProduct(product.id);
               }}
-              class="cart-btn-remove"
+              className="cart-btn-remove"
               type="button"
             >
-              <svg class="icon-remove">
+              <svg className="icon-remove">
                 <use href={sprite + "#icon-cross"}></use>
               </svg>
             </StyledBtnRemove>
           </StyledProductItem>
         ))}
       </StyledProductsList>
-      <StyledBtnOrder class="cart-btn-order" type="button">
+      <StyledBtnOrder className="cart-btn-order" type="button">
         Замовити
       </StyledBtnOrder>
     </StyledCartContainer>
