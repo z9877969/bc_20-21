@@ -46,12 +46,15 @@ class TodoPage extends Component {
     return (
       <>
         <ToDoForm addTodo={this.addTodo} />
-        <select name="filter" value={filter} onChange={this.handleChange}>
-          <option value="all">ALL</option>
-          <option value={TodoForm.priority.LOW}>LOW</option>
-          <option value={TodoForm.priority.MEDIUM}>MEDIUM</option>
-          <option value={TodoForm.priority.HIGH}>HIGH</option>
-        </select>
+        <div style={{ width: "200px", margin: "0 auto 20px" }}>
+          <h3>Filter by priority:</h3>
+          <select name="filter" value={filter} onChange={this.handleChange}>
+            <option value="all">ALL</option>
+            <option value={TodoForm.priority.LOW}>LOW</option>
+            <option value={TodoForm.priority.MEDIUM}>MEDIUM</option>
+            <option value={TodoForm.priority.HIGH}>HIGH</option>
+          </select>
+        </div>
         <ToDoList
           todo={filteredTodos}
           removeTodo={this.removeTodo}

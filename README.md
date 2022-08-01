@@ -1,6 +1,15 @@
 # Lesson-05(Q&A mod_1-2)
 
-###1) static priority
-###1) select -> filter todo by priority
-###2) filter products by model + calc
-###3) module.scss, vars
+###1) mounting
+constructor() {}
+static getDerivedStateFromProps(nextProps, prevState) {}
+render() {}
+componentDidMount() {}
+###2) updating
+shouldComponentUpdate(nextProps, nextState) {}
+getSnapshotBeforeUpdate(prevProps, prevState) {}
+componentDidUpdate(prevProps, prevState, snapshot) {} 
+ 
+###3) unmounting
+componentWillUnmount() {}
+componentDidCatch(error, info) {}

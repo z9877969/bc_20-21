@@ -1,41 +1,23 @@
 import { Component } from "react";
-import Header from "./Header/Header";
-import ShopPage from "./ShopPage/ShopPage";
+import Navigation from "./Navigation/Navigation";
 import TodoPage from "./TodoPage/TodoPage";
 
 class App extends Component {
   state = {
     activePage: "shop",
-    isCartOpen: false,
   };
 
   handleOpenActivePage = (activePage) => {
     this.setState({ activePage: activePage });
   };
 
-  handleOpenCart = () => {
-    this.setState({ isCartOpen: true });
-  };
-
-  handleCloseCart = () => {
-    this.setState({ isCartOpen: false });
-  };
-
   render() {
-    const { activePage, isCartOpen } = this.state;
+    const { activePage } = this.state;
     return (
       <>
-        <Header
-          handleOpenActivePage={this.handleOpenActivePage}
-          handleOpenCart={this.handleOpenCart}
-        />
+        <Navigation handleOpenActivePage={this.handleOpenActivePage} />
         {activePage === "todo" && <TodoPage />}
-        {activePage === "shop" && (
-          <ShopPage
-            isCartOpen={isCartOpen}
-            handleCloseCart={this.handleCloseCart}
-          />
-        )}
+        {activePage === "home" && <h1>Wellcome to our amazing page!</h1>}
       </>
     );
   }
