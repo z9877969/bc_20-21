@@ -1,4 +1,4 @@
-# Lesson-05(Q&A mod_1-2)
+# Lesson-06(life-cycles)
 
 ###1) mounting
 constructor() {}
