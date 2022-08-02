@@ -1,15 +1,7 @@
-# Lesson-06(life-cycles)
+# Lesson-07(http-requests)
 
-###1) mounting
-constructor() {}
-static getDerivedStateFromProps(nextProps, prevState) {}
-render() {}
-componentDidMount() {}
-###2) updating
-shouldComponentUpdate(nextProps, nextState) {}
-getSnapshotBeforeUpdate(prevProps, prevState) {}
-componentDidUpdate(prevProps, prevState, snapshot) {} 
- 
-###3) unmounting
-componentWillUnmount() {}
-componentDidCatch(error, info) {}
+###1) запити - https://newsapi.org/docs/endpoints/top-headlines
+###2) розміщення стейта
+###3) індикатор завантаження
+###4) обробка помилок
+###5) виніс API
