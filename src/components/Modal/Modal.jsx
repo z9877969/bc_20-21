@@ -1,7 +1,10 @@
+import { createPortal } from "react-dom";
 import s from "./Modal.module.scss";
 
+const modalContainer = document.getElementById("modal");
+
 const Modal = () => {
-  return (
+  return createPortal(
     <div className={s.backdrop}>
       <h1 className={s.title}>
         <a
@@ -14,7 +17,8 @@ const Modal = () => {
           {"As Kazakhstan Descends into Chaos, Crypto Miners Are at a Loss"}
         </a>
       </h1>
-    </div>
+    </div>,
+    modalContainer
   );
 };
 
