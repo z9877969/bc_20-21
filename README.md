@@ -1,7 +1,15 @@
 # Lesson-07(http-requests)
 
-###1) запити - https://newsapi.org/docs/endpoints/top-headlines
-###2) розміщення стейта
-###3) індикатор завантаження
-###4) обробка помилок
-###5) виніс API
+##part_1
+###1) Counter -> useState
+###2) Todo -> useState, useEffect
+###3) TodoItem -> cwu useEffect(return)
+###4) useLocalStorage, useForm
+
+##part_2
+###5) useContext - todoItem (lang)
+###6) TodoItem with btnStop -> setInterval = useRef
+###7) Todo -> getSnapshot = useRef, (scrollIntoView)
+###8) TodoForm -> memo
+###9) Todo -> useMemo/filteredList/
+###10) useCallback
