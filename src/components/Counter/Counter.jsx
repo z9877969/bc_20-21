@@ -1,57 +1,61 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import s from "./Counter.module.scss";
 
 const initialState = {
   count: 50,
 };
 
-class Counter extends Component {
-  state = {
-    count: initialState.count,
-  };
+const Counter = () => {
+  const [count, setCount] = useState(50);
+  const [isOpen, setIsOpen] = useState(true); // [value, setValue]
+  const [color, setColor] = useState("red"); // [value, setValue]
 
-  handleCountDecrement = () => {
-    this.setState((prevState) => {
-      return { count: prevState.count - 10 };
-    });
-  };
+  const toggleBackground = () =>
+    setColor((prev) => (prev === "red" ? "green" : "red"));
 
-  handleCountIncrement = (event) => {
-    console.log(event);
-    this.setState((prevState) => ({ count: prevState.count + 15 }));
-  };
-
-  handleReset = () => {
-    this.setState({ count: initialState.count });
-  };
-
-  render() {
-    return (
-      <div className={s.container}>
-        <h1 className={s.title}>Counter</h1>
-        <p className={s.count}>{this.state.count}</p>
-        <div className={s.btnsWrapper}>
-          <button
-            onClick={this.handleCountDecrement}
-            className={s.btn}
-            type="button"
-          >
-            -
-          </button>
-          <button onClick={this.handleReset} className={s.btn} type="button">
-            0
-          </button>
-          <button
-            onClick={this.handleCountIncrement}
-            className={s.btn}
-            type="button"
-          >
-            +
-          </button>
-        </div>
+  console.log("RENDER");
+  return (
+    <div className={s.container} style={{ backgroundColor: color }}>
+      <h1 className={s.title}>Counter</h1>
+      <p className={s.count}>{count}</p>
+      <div className={s.btnsWrapper}>
+        <button
+          onClick={() => {
+            setCount(count - 10); // 40
+            setCount(count - 10); // 40
+            setCount(count - 10); // 40
+            setCount(count - 10); // 40
+            setCount((prevCount) => prevCount - 5); // 35
+            toggleBackground();
+          }}
+          className={s.btn}
+          type="button"
+        >
+          -
+        </button>
+        <button
+          onClick={() => {
+            setCount(0);
+            toggleBackground();
+          }}
+          className={s.btn}
+          type="button"
+        >
+          0
+        </button>
+        <button
+          onClick={() => {
+            setCount((prevCount) => prevCount + 10);
+            toggleBackground();
+          }}
+          className={s.btn}
+          type="button"
+        >
+          +
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Counter;

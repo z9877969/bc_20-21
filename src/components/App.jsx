@@ -1,9 +1,25 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import Counter from "./Counter/Counter";
 import Navigation from "./Navigation/Navigation";
 import TodoPage from "./TodoPage/TodoPage";
 
-class App extends Component {
+const App = () => {
+  const [activePage, setActivePage] = useState("todo");
+
+  const handleOpenActivePage = (activePage) => {
+    setActivePage(activePage);
+  };
+
+  return (
+    <>
+      <Navigation handleOpenActivePage={handleOpenActivePage} />
+      {activePage === "todo" && <TodoPage activePage={activePage} />}
+      {activePage === "counter" && <Counter />}
+    </>
+  );
+};
+
+class AppClass extends Component {
   state = {
     activePage: "counter",
   };
