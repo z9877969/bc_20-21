@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import s from "./TodoList.module.scss";
 import TodoItem from "../TodoItem/TodoItem";
 
-const TodoList = ({ todo, removeTodo, updateStatus }) => {
+const TodoList = ({ todo, removeTodo, updateTodoStatus }) => {
   return (
     <ul className={s.container}>
       {todo.map((el) => (
@@ -10,7 +10,7 @@ const TodoList = ({ todo, removeTodo, updateStatus }) => {
           key={el.id}
           {...el}
           removeTodo={removeTodo}
-          updateStatus={updateStatus}
+          updateTodoStatus={updateTodoStatus}
         />
       ))}
     </ul>

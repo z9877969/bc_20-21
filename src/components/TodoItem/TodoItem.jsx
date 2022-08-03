@@ -1,4 +1,4 @@
-import { Component, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import s from "../TodoList/TodoList.module.scss";
 import sprite from "../../assets/icons/sprite.svg";
 
@@ -9,21 +9,17 @@ const TodoItem = ({
   date,
   priority,
   isDoneStatus,
-  updateStatus,
+  updateTodoStatus,
   removeTodo,
 }) => {
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      console.log("counter");
       setCounter((prev) => prev + 1);
     }, 1500);
 
-    console.log("intervalId_useEffect :>> ", intervalId);
-
     return () => {
-      console.log("UNMOUNT", intervalId);
       clearInterval(intervalId);
     };
   }, []);
@@ -44,7 +40,7 @@ const TodoItem = ({
           type="checkbox"
           name="status"
           checked={isDoneStatus}
-          onChange={() => updateStatus(id)}
+          onChange={() => updateTodoStatus(id)}
         />
         Done
       </label>
