@@ -35,12 +35,9 @@ class NewsPage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { page, searchInput } = this.state;
-    
-    if (
-      this.state.page !== prevState.page &&
-      searchInput
-    ) {
-      this.setSearchNews()
+
+    if (this.state.page !== prevState.page && searchInput) {
+      this.setSearchNews();
     }
     if (this.state.page !== prevState.page && !searchInput) {
       this.setState({ isLoading: true });
@@ -75,9 +72,10 @@ class NewsPage extends Component {
 
   render() {
     const { news, totalResults, isLoading } = this.state;
+    const { setModalInfo } = this.props;
     return (
       <>
-        <NewsList news={news} />
+        <NewsList news={news} setModalInfo={setModalInfo} />
 
         {isLoading && <h1>Loading...</h1>}
         {news.length > 0 && news.length < totalResults && (

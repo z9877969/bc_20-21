@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import s from "./NewsList.module.scss";
 
-const NewsList = ({ news }) => {
+const NewsList = ({ news, setModalInfo }) => {
   return (
     <ul className={s.news}>
       {news.map((item, idx) => (
-        <li key={idx} className={s.item}>
+        <li
+          key={idx}
+          className={s.item}
+          onClick={() => setModalInfo({ url: item.url, title: item.title })}
+        >
           <img className={s.img} src={item.urlToImage} alt="" />
           <div className={s.textWrapper}>
             <h3 className={s.title}>{item.title}</h3>

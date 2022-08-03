@@ -6,20 +6,26 @@ import Modal from "../components/Modal/Modal";
 class App extends Component {
   state = {
     searchInput: "", // cat -> ""
-    isModal: false,
+    modalInfo: null, // {url, title}
   };
 
   updateSearchInput = (searchInput) => {
     this.setState({ searchInput: searchInput });
   };
 
+  setModalInfo = (modalInfo = null) => {
+    this.setState({ modalInfo });
+  };
+
   render() {
-    const { searchInput, isModal } = this.state;
+    const { searchInput, modalInfo } = this.state;
     return (
       <div className="App">
         <SearchForm updateSearchInput={this.updateSearchInput} />
-        <NewsPage searchInput={searchInput} />
-        {isModal && <Modal />}
+        <NewsPage searchInput={searchInput} setModalInfo={this.setModalInfo} />
+        {modalInfo && (
+          <Modal modalInfo={modalInfo} setModalInfo={this.setModalInfo} />
+        )}
       </div>
     );
   }
