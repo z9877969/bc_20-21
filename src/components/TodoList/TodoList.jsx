@@ -20,7 +20,7 @@ const TodoList = ({ todo, removeTodo, updateTodoStatus }) => {
 TodoList.propTypes = {
   todo: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeTodo: PropTypes.func.isRequired,
-  updateStatus: PropTypes.func.isRequired,
+  updateTodoStatus: PropTypes.func.isRequired,
 };
 
 export default TodoList;

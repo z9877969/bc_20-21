@@ -1,14 +1,19 @@
-import { Component, useState, useEffect } from "react";
-import ToDoForm from "../TodoForm/TodoForm";
+import { useState, useEffect, useContext, useMemo, useRef } from "react";
+import ToDoForm, { priorityOptions } from "../TodoForm/TodoForm";
 import ToDoList from "../TodoList/TodoList";
 import { todo as todoList } from "../../data/todo";
-import TodoForm from "../TodoForm/TodoForm";
+import TodoFilter from "../TodoFilter/TodoFilter";
+import { FilterContext } from "../../context/FilterProvider";
 
 const TodoPage = () => {
-  const [filter, setFilter] = useState("all");
+  const { filter } = useContext(FilterContext);
+
   const [todo, setTodo] = useState(
     () => JSON.parse(localStorage.getItem("todo")) || todoList
   );
+  const [color, setColor] = useState("transparent");
+
+  const firstRenderRef = useRef(true);
 
   const addTodo = (newTodo) => {
     // this.setState((prevState) => ({
@@ -29,41 +34,50 @@ const TodoPage = () => {
     );
   };
 
-  const handleChange = (e) => {
-    const { value } = e.target;
-    // this.setState({ filter: value });
-    setFilter(value);
-  };
+  // const filterTodosByPriority = () => {
+  //   console.log("filterTodosByPriority START");
+  //   if (filter === "all") return todo;
+  //   return todo.filter((el) => el.priority === filter);
+  // };
 
-  const filterTodosByPriority = () => {
+  // const filteredTodos = filterTodosByPriority();
+
+  const filteredTodos = useMemo(() => {
+    console.log("useMemo");
     if (filter === "all") return todo;
     return todo.filter((el) => el.priority === filter);
-  };
-
-  const filteredTodos = filterTodosByPriority();
+  }, [filter, todo]); // [1,2,3]
 
   useEffect(() => {
-    localStorage.setItem("todo", JSON.stringify(todo));
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+      console.log("firsRender = false");
+    } else {
+      console.log("setItem");
+      localStorage.setItem("todo", JSON.stringify(todo));
+    }
   }, [todo]);
 
+  // console.log("TodoPage");
+
   return (
-    <>
+    <div style={{ backgroundColor: color }}>
+      <button
+        type="button"
+        onClick={() =>
+          setColor((prev) => (prev !== "transparent" ? "transparent" : "blue"))
+        }
+      >
+        Change BG color
+      </button>
       <ToDoForm addTodo={addTodo} />
-      <div style={{ width: "200px", margin: "0 auto 20px" }}>
-        <h3>Filter by priority:</h3>
-        <select name="filter" value={filter} onChange={handleChange}>
-          <option value="all">ALL</option>
-          <option value={TodoForm.priority.LOW}>LOW</option>
-          <option value={TodoForm.priority.MEDIUM}>MEDIUM</option>
-          <option value={TodoForm.priority.HIGH}>HIGH</option>
-        </select>
-      </div>
+      <TodoFilter />
       <ToDoList
         todo={filteredTodos}
         removeTodo={removeTodo}
         updateTodoStatus={updateTodoStatus}
       />
-    </>
+    </div>
   );
 };
 

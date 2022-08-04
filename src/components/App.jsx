@@ -10,6 +10,8 @@ const App = () => {
     setActivePage(activePage);
   };
 
+  console.log("APP");
+
   return (
     <>
       <Navigation handleOpenActivePage={handleOpenActivePage} />

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { FilterContext } from "../../context/FilterProvider";
 import s from "../TodoList/TodoList.module.scss";
 import sprite from "../../assets/icons/sprite.svg";
 
@@ -13,22 +14,51 @@ const TodoItem = ({
   removeTodo,
 }) => {
   const [counter, setCounter] = useState(0);
+  const [isIntervalActive, setIsIntervalActive] = useState(true);
+
+  // const data = useContext(FilterContext);
+
+  // console.log("data :>> ", data);
+
+  // let intervalId = null;
+  const intervalIdRef = useRef(null);
+  const itemRef = useRef(null);
+
+  const handleStopInterval = () => {
+    console.log("stop", itemRef.current.clientHeight);
+    // itemRef.current.style.backgroundColor = "red";
+    setIsIntervalActive(false);
+    clearInterval(intervalIdRef.current);
+  };
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    // console.log(intervalIdRef);
+
+    intervalIdRef.current = setInterval(() => {
       setCounter((prev) => prev + 1);
     }, 1500);
 
     return () => {
-      clearInterval(intervalId);
+      clearInterval(intervalIdRef.current);
     };
   }, []);
 
+  // console.log(intervalIdRef);
+
+  // console.log("itemRef_render :>> ", itemRef);
+
   return (
-    <li className={s.toDoItem}>
+    <li
+      className={s.toDoItem}
+      ref={itemRef}
+      style={!isIntervalActive ? { backgroundColor: "red" } : null}
+    >
       <p className={s.date}>
         {date} <span>Counter: {counter}</span>
       </p>
+      <button type="button" onClick={handleStopInterval}>
+        Stop Interval
+      </button>
       <h3 className={`${s.title} ${isDoneStatus && s.isDone}`}>{title}</h3>
       <p className={`${s.descr} ${isDoneStatus && s.isDone}`}>{descr}</p>
       <p className={`${s.priority} ${isDoneStatus && s.isDone}`}>
