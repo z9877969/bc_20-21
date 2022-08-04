@@ -1,34 +1,27 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import s from "./Counter.module.scss";
-
-const initialState = {
-  count: 50,
-};
 
 const Counter = () => {
   const [count, setCount] = useState(50);
-  const [isOpen, setIsOpen] = useState(true); // [value, setValue]
-  const [color, setColor] = useState("red"); // [value, setValue]
+  const [isRedBgColor, setIsRedBgColor] = useState(false);
 
-  const toggleBackground = () =>
-    setColor((prev) => (prev === "red" ? "green" : "red"));
+  const toggleBackground = () => setIsRedBgColor((prev) => !prev);
 
-  console.log("RENDER");
+  const btnsColor = isRedBgColor ? "green" : "red";
+  const bgColor = isRedBgColor ? "red" : "green";
+  
   return (
-    <div className={s.container} style={{ backgroundColor: color }}>
+    <div className={s.container} style={{ backgroundColor: bgColor }}>
       <h1 className={s.title}>Counter</h1>
       <p className={s.count}>{count}</p>
       <div className={s.btnsWrapper}>
         <button
           onClick={() => {
-            setCount(count - 10); // 40
-            setCount(count - 10); // 40
-            setCount(count - 10); // 40
-            setCount(count - 10); // 40
-            setCount((prevCount) => prevCount - 5); // 35
+            setCount((prevCount) => prevCount - 5);
             toggleBackground();
           }}
           className={s.btn}
+          style={{ backgroundColor: btnsColor }}
           type="button"
         >
           -
@@ -39,6 +32,7 @@ const Counter = () => {
             toggleBackground();
           }}
           className={s.btn}
+          style={{ backgroundColor: btnsColor }}
           type="button"
         >
           0
@@ -49,6 +43,7 @@ const Counter = () => {
             toggleBackground();
           }}
           className={s.btn}
+          style={{ backgroundColor: btnsColor }}
           type="button"
         >
           +

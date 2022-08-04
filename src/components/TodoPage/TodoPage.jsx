@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useMemo, useRef } from "react";
-import ToDoForm, { priorityOptions } from "../TodoForm/TodoForm";
+import ToDoForm from "../TodoForm/TodoForm";
 import ToDoList from "../TodoList/TodoList";
 import { todo as todoList } from "../../data/todo";
 import TodoFilter from "../TodoFilter/TodoFilter";
@@ -34,31 +34,18 @@ const TodoPage = () => {
     );
   };
 
-  // const filterTodosByPriority = () => {
-  //   console.log("filterTodosByPriority START");
-  //   if (filter === "all") return todo;
-  //   return todo.filter((el) => el.priority === filter);
-  // };
-
-  // const filteredTodos = filterTodosByPriority();
-
   const filteredTodos = useMemo(() => {
-    console.log("useMemo");
     if (filter === "all") return todo;
     return todo.filter((el) => el.priority === filter);
-  }, [filter, todo]); // [1,2,3]
+  }, [filter, todo]);
 
   useEffect(() => {
     if (firstRenderRef.current) {
       firstRenderRef.current = false;
-      console.log("firsRender = false");
     } else {
-      console.log("setItem");
       localStorage.setItem("todo", JSON.stringify(todo));
     }
   }, [todo]);
-
-  // console.log("TodoPage");
 
   return (
     <div style={{ backgroundColor: color }}>

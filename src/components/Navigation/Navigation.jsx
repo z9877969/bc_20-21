@@ -29,6 +29,18 @@ const Navigation = ({ handleOpenActivePage }) => {
             Todo
           </a>
         </li>
+        <li className={s.navItem}>
+          <a
+            href="/"
+            className={s.navLink}
+            onClick={(e) => {
+              e.preventDefault();
+              handleOpenActivePage("news");
+            }}
+          >
+            News
+          </a>
+        </li>
       </ul>
     </nav>
   );

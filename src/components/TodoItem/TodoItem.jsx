@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { FilterContext } from "../../context/FilterProvider";
+import { useEffect, useRef, useState } from "react";
 import s from "../TodoList/TodoList.module.scss";
 import sprite from "../../assets/icons/sprite.svg";
 
@@ -16,24 +15,15 @@ const TodoItem = ({
   const [counter, setCounter] = useState(0);
   const [isIntervalActive, setIsIntervalActive] = useState(true);
 
-  // const data = useContext(FilterContext);
-
-  // console.log("data :>> ", data);
-
-  // let intervalId = null;
   const intervalIdRef = useRef(null);
   const itemRef = useRef(null);
 
   const handleStopInterval = () => {
-    console.log("stop", itemRef.current.clientHeight);
-    // itemRef.current.style.backgroundColor = "red";
     setIsIntervalActive(false);
     clearInterval(intervalIdRef.current);
   };
 
   useEffect(() => {
-    // console.log(intervalIdRef);
-
     intervalIdRef.current = setInterval(() => {
       setCounter((prev) => prev + 1);
     }, 1500);
@@ -42,10 +32,6 @@ const TodoItem = ({
       clearInterval(intervalIdRef.current);
     };
   }, []);
-
-  // console.log(intervalIdRef);
-
-  // console.log("itemRef_render :>> ", itemRef);
 
   return (
     <li

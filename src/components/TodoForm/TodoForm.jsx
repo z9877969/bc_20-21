@@ -19,33 +19,6 @@ const initialForm = {
 };
 
 const TodoForm = ({ addTodo }) => {
-  // const [date, setDate] = useState(curDate);
-  // const [title, setTitle] = useState("");
-  // const [descr, setDescr] = useState("");
-  // const [priority, setPriority] = useState("");
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   switch (name) {
-  //     case "date":
-  //       setDate(value);
-  //       return;
-  //     case "title":
-  //       setTitle(value);
-  //       return;
-  //     case "descr":
-  //       setDescr(value);
-  //       return;
-  //     case "priority":
-  //       console.log("object");
-  //       setPriority(value);
-  //       return;
-  //     default:
-  //       return;
-  //   }
-  // };
-
   const [form, setForm] = useState(initialForm);
 
   const handleChange = (e) => {
@@ -105,8 +78,8 @@ const TodoForm = ({ addTodo }) => {
             className={s.input}
             type="radio"
             name="priority"
-            value={priorityOptions.LOW} // "low" -> undefined
-            checked={priorityOptions.LOW === form.priority} // "low" === this.state.priority
+            value={priorityOptions.LOW}
+            checked={priorityOptions.LOW === form.priority} // "low" === priority
             onChange={handleChange}
           />
           <label className={`${s.label} ${s.radio}`} htmlFor="formRadioLow">

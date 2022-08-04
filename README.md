@@ -1,15 +1,5 @@
-# Lesson-09(hooks.p-2)
+# Lesson-10(Q&A_mod.1-2)
 
 ##part_1
-###1) Counter -> useState
-###2) Todo -> useState, useEffect
-###3) TodoItem -> cwu useEffect(return)
-###4) useLocalStorage, useForm
-
-##part_2
-###5) useContext - todoItem (lang)
-###6) TodoItem with btnStop -> setInterval = useRef
-###7) Todo -> getSnapshot = useRef, (scrollIntoView)
-###8) TodoForm -> memo
-###9) Todo -> useMemo/filteredList/
-###10) useCallback
+###1.useLocalStorage, useForm
+###2. NewsGallery -> getSnapshot = useRef, (scrollIntoView)
