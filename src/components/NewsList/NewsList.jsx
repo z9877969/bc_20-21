@@ -1,14 +1,26 @@
 import PropTypes from "prop-types";
+import { useContext, useEffect, useRef } from "react";
+import { ModalContext } from "../../context/ModalProvider";
 import s from "./NewsList.module.scss";
 
-const NewsList = ({ news, setModalInfo }) => {
+const NewsList = ({ news, page }) => {
+  const itemRef = useRef(null);
+  const setModal = useContext(ModalContext);
+
+  useEffect(() => {
+    itemRef.current &&
+      itemRef.current.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, [news]);
+
+  // page = 1 | 2 | 3 , perPage = 10
   return (
     <ul className={s.news}>
       {news.map((item, idx) => (
         <li
+          ref={(page - 1) * 10 + 1 === idx + 1 ? itemRef : null}
           key={idx}
           className={s.item}
-          onClick={() => setModalInfo({ url: item.url, title: item.title })}
+          onClick={() => setModal(<h1>Modal news - {item.title}</h1>)}
         >
           <img className={s.img} src={item.urlToImage} alt="" />
           <div className={s.textWrapper}>

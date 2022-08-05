@@ -4,14 +4,17 @@ import "./index.scss";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import FilterProvider from "./context/FilterProvider";
+import ModalProvider from "./context/ModalProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   // <React.StrictMode>
-  <FilterProvider>
-    <App />
-  </FilterProvider>
+  <ModalProvider>
+    <FilterProvider>
+      <App />
+    </FilterProvider>
+  </ModalProvider>
   // </React.StrictMode>
 );
 

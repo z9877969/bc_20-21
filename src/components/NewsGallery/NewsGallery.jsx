@@ -1,89 +1,43 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import NewsList from "../NewsList/NewsList";
 import { getSearchNews, getTopNews } from "../../utils/newsApi";
-// import news from "../../data/news.json";
 
-class NewsPage extends Component {
-  state = {
-    news: [], // 10 -> 20 -> 30 -> 37
-    totalResults: 0, // 37
-    page: 1,
-    searchInput: "", //
-    isLoading: false,
+const NewsPage = ({ setModalInfo, searchInput }) => {
+  const [news, setNews] = useState([]);
+  const [totalResults, setTotalResults] = useState(0);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const updatePage = () => {
+    setPage((page) => page + 1);
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.searchInput !== prevState.searchInput) {
-      return { page: 1, searchInput: nextProps.searchInput };
-    }
-    return null;
-  }
-
-  componentDidMount() {
-    const { page } = this.state;
-    this.setState({ isLoading: true });
-    getTopNews(page)
-      .then(({ articles, totalResults }) => {
-        this.setState({ news: articles, totalResults: totalResults });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => this.setState({ isLoading: false }));
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { page, searchInput } = this.state;
-
-    if (this.state.page !== prevState.page && searchInput) {
-      this.setSearchNews();
-    }
-    if (this.state.page !== prevState.page && !searchInput) {
-      this.setState({ isLoading: true });
-      getTopNews(page)
-        .then(({ articles, totalResults }) =>
-          this.setState((prev) => ({
-            news: [...prev.news, ...articles],
-          }))
-        )
+  useEffect(() => {
+    if (!searchInput) return;
+    const setSearchNews = () => {
+      setIsLoading(true);
+      getSearchNews(page, searchInput)
+        .then(({ articles, totalResults }) => {
+          setNews((news) => (page === 1 ? articles : [...news, ...articles]));
+          page === 1 && setTotalResults(totalResults);
+        })
         .catch((err) => console.log(err))
-        .finally(() => this.setState({ isLoading: false }));
-    }
-  }
+        .finally(() => setIsLoading(false));
+    };
+    setSearchNews();
+  }, [page, searchInput]);
 
-  setSearchNews = () => {
-    const { page, searchInput } = this.state;
-    this.setState({ isLoading: true });
-    getSearchNews(page, searchInput)
-      .then(({ articles, totalResults }) => {
-        this.setState((prev) => ({
-          news: page === 1 ? articles : [...prev.news, ...articles],
-          totalResults,
-        }));
-      })
-      .catch((err) => console.log(err))
-      .finally(() => this.setState({ isLoading: false }));
-  };
+  return (
+    <>
+      <NewsList news={news} page={page} setModalInfo={setModalInfo} />
 
-  updatePage = () => {
-    this.setState((prev) => ({ page: prev.page + 1 }));
-  };
-
-  render() {
-    const { news, totalResults, isLoading } = this.state;
-    const { setModalInfo } = this.props;
-    return (
-      <>
-        <NewsList news={news} setModalInfo={setModalInfo} />
-
-        {isLoading && <h1>Loading...</h1>}
-        {news.length > 0 && news.length < totalResults && (
-          <Button cbOnClick={this.updatePage} />
-        )}
-      </>
-    );
-  }
-}
+      {isLoading && <h1>Loading...</h1>}
+      {news.length > 0 && news.length < totalResults && (
+        <Button cbOnClick={updatePage} />
+      )}
+    </>
+  );
+};
 
 export default NewsPage;

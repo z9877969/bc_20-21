@@ -1,36 +1,25 @@
-import { Component } from "react";
+import { useForm } from "../../hooks/useForm";
 import s from "./SearchForm.module.scss";
 
-class SearchForm extends Component {
-  state = {
-    input: "",
-  };
+const SearchForm = ({ updateSearchInput }) => {
+  const { form, handleChange, handleSubmit } = useForm({
+    initialValues: { input: "" },
+    onSubmit: (values) => updateSearchInput(values.input),
+  });
 
-  handleChange = (e) => {
-    this.setState({ input: e.target.value });
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { input } = this.state;
-    this.props.updateSearchInput(input);
-  };
-
-  render() {
-    const { input } = this.state;
-    return (
-      <form className={s.form} onSubmit={this.handleSubmit}>
-        <input
-          className={s.input}
-          type="text"
-          value={input}
-          placeholder="Search..."
-          onChange={this.handleChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className={s.form} onSubmit={handleSubmit}>
+      <input
+        className={s.input}
+        type="text"
+        name="input"
+        value={form.input}
+        placeholder="Search..."
+        onChange={handleChange}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
 
 export default SearchForm;

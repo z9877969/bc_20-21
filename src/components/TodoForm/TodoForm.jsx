@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 import s from "./TodoForm.module.scss";
+import { useForm } from "../../hooks/useForm";
 
 const curDate = moment().format("YYYY-MM-DD");
 
@@ -18,25 +18,16 @@ const initialForm = {
   priority: "",
 };
 
+
+
 const TodoForm = ({ addTodo }) => {
-  const [form, setForm] = useState(initialForm);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => {
-      return { ...prev, [name]: value };
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = {
-      ...form,
-      id: uuidv4(),
-      isDoneStatus: false,
-    };
-    addTodo(formData);
-  };
+  const { form, handleChange, handleSubmit } = useForm({
+    initialValues: initialForm,
+    onSubmit: (values) => {
+      const data = { ...values, id: uuidv4(), isDoneStatus: false };
+      addTodo(data); // fetch()
+    },
+  }); // addTodo(data)
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
