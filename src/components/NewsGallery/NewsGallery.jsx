@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import NewsList from "../NewsList/NewsList";
-import { getSearchNews, getTopNews } from "../../utils/newsApi";
+import { getSearchNews } from "../../utils/newsApi";
 
-const NewsPage = ({ setModalInfo, searchInput }) => {
+const NewsGallery = ({ searchInput }) => {
   const [news, setNews] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [page, setPage] = useState(1);
@@ -30,7 +31,7 @@ const NewsPage = ({ setModalInfo, searchInput }) => {
 
   return (
     <>
-      <NewsList news={news} page={page} setModalInfo={setModalInfo} />
+      <NewsList news={news} page={page} />
 
       {isLoading && <h1>Loading...</h1>}
       {news.length > 0 && news.length < totalResults && (
@@ -40,4 +41,9 @@ const NewsPage = ({ setModalInfo, searchInput }) => {
   );
 };
 
-export default NewsPage;
+NewsGallery.propTypes = {
+  setModalInfo: PropTypes.func.isRequired,
+  searchInput: PropTypes.func.isRequired,
+};
+
+export default NewsGallery;

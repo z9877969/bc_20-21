@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useForm } from "../../hooks/useForm";
 import s from "./SearchForm.module.scss";
 
@@ -20,6 +21,10 @@ const SearchForm = ({ updateSearchInput }) => {
       <button type="submit">Submit</button>
     </form>
   );
+};
+
+SearchForm.propTypes = {
+  updateSearchInput: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

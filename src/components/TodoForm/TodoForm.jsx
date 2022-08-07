@@ -18,16 +18,14 @@ const initialForm = {
   priority: "",
 };
 
-
-
 const TodoForm = ({ addTodo }) => {
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: initialForm,
     onSubmit: (values) => {
       const data = { ...values, id: uuidv4(), isDoneStatus: false };
-      addTodo(data); // fetch()
+      addTodo(data);
     },
-  }); // addTodo(data)
+  });
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
@@ -37,7 +35,7 @@ const TodoForm = ({ addTodo }) => {
           className={s.input}
           type="date"
           name="date"
-          value={form.date} // 2022-07-28
+          value={form.date}
           onChange={handleChange}
         />
       </label>

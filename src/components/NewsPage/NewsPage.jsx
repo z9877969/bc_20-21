@@ -13,8 +13,7 @@ const NewsPage = () => {
   return (
     <div className="App">
       <SearchForm updateSearchInput={updateSearchInput} />
-      <NewsGallery searchInput={searchInput} setModalInfo={setModalInfo} />
-      
+      <NewsGallery searchInput={searchInput} />
     </div>
   );
 };

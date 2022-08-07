@@ -12,7 +12,6 @@ const NewsList = ({ news, page }) => {
       itemRef.current.scrollIntoView({ block: "start", behavior: "smooth" });
   }, [news]);
 
-  // page = 1 | 2 | 3 , perPage = 10
   return (
     <ul className={s.news}>
       {news.map((item, idx) => (
@@ -37,6 +36,7 @@ const NewsList = ({ news, page }) => {
 
 NewsList.propTypes = {
   news: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
 };
 
 export default NewsList;

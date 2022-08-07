@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import s from "../TodoList/TodoList.module.scss";
 import sprite from "../../assets/icons/sprite.svg";
 
@@ -12,39 +12,9 @@ const TodoItem = ({
   updateTodoStatus,
   removeTodo,
 }) => {
-  const [counter, setCounter] = useState(0);
-  const [isIntervalActive, setIsIntervalActive] = useState(true);
-
-  const intervalIdRef = useRef(null);
-  const itemRef = useRef(null);
-
-  const handleStopInterval = () => {
-    setIsIntervalActive(false);
-    clearInterval(intervalIdRef.current);
-  };
-
-  useEffect(() => {
-    intervalIdRef.current = setInterval(() => {
-      setCounter((prev) => prev + 1);
-    }, 1500);
-
-    return () => {
-      clearInterval(intervalIdRef.current);
-    };
-  }, []);
-
   return (
-    <li
-      className={s.toDoItem}
-      ref={itemRef}
-      style={!isIntervalActive ? { backgroundColor: "red" } : null}
-    >
-      <p className={s.date}>
-        {date} <span>Counter: {counter}</span>
-      </p>
-      <button type="button" onClick={handleStopInterval}>
-        Stop Interval
-      </button>
+    <li className={s.toDoItem}>
+      <p className={s.date}>{date}</p>
       <h3 className={`${s.title} ${isDoneStatus && s.isDone}`}>{title}</h3>
       <p className={`${s.descr} ${isDoneStatus && s.isDone}`}>{descr}</p>
       <p className={`${s.priority} ${isDoneStatus && s.isDone}`}>
@@ -67,6 +37,17 @@ const TodoItem = ({
       </button>
     </li>
   );
+};
+
+TodoItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  descr: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  date: PropTypes.string.isRequired,
+  priority: PropTypes.string.isRequired,
+  isDoneStatus: PropTypes.bool.isRequired,
+  updateTodoStatus: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 };
 
 export default TodoItem;
