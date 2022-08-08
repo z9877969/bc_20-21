@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const stylesNav = {
   width: "300px",
@@ -10,21 +10,26 @@ const stylesNav = {
 
 const linkStyles = { padding: "10px", border: "1px solid blue" };
 
+const setLinkStyles = ({ isActive }) =>
+  isActive
+    ? { ...linkStyles, color: "red", border: "1px solid red" }
+    : linkStyles;
+
 const NewsCountryNav = () => {
   return (
     <nav style={stylesNav}>
-      <Link style={linkStyles} >
-        RU
-      </Link>
-      <Link style={linkStyles} >
+      <NavLink to="ua" style={setLinkStyles}>
+        UA
+      </NavLink>
+      <NavLink to="pl" style={setLinkStyles}>
         PL
-      </Link>
-      <Link style={linkStyles} >
-        EN
-      </Link>
-      <Link style={linkStyles} >
+      </NavLink>
+      <NavLink to="us" style={setLinkStyles}>
+        US
+      </NavLink>
+      <NavLink to="fr" style={setLinkStyles}>
         FR
-      </Link>
+      </NavLink>
     </nav>
   );
 };

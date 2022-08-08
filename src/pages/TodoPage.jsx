@@ -6,12 +6,12 @@ import {
   useRef,
   useCallback,
 } from "react";
-import ToDoForm from "../TodoForm/TodoForm";
-import ToDoList from "../TodoList/TodoList";
-import { todo as todoList } from "../../data/todo";
-import TodoFilter from "../TodoFilter/TodoFilter";
-import { FilterContext } from "../../context/FilterProvider";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import ToDoForm from "../components/TodoForm/TodoForm";
+import ToDoList from "../components/TodoList/TodoList";
+import { todo as todoList } from "../data/todo";
+import TodoFilter from "../components/TodoFilter/TodoFilter";
+import { FilterContext } from "../context/FilterProvider";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const TodoPage = () => {
   const { filter } = useContext(FilterContext);

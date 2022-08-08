@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef } from "react";
 import { ModalContext } from "../../context/ModalProvider";
 import s from "./NewsList.module.scss";
 
-const NewsList = ({ news, page }) => {
+const NewsList = ({ news, page = 1 }) => {
   const itemRef = useRef(null);
   const setModal = useContext(ModalContext);
 
@@ -36,7 +36,7 @@ const NewsList = ({ news, page }) => {
 
 NewsList.propTypes = {
   news: PropTypes.array.isRequired,
-  page: PropTypes.number.isRequired,
+  page: PropTypes.number,
 };
 
 export default NewsList;

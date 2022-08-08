@@ -1,12 +1,20 @@
-import PropTypes from "prop-types";
+import { Link, NavLink } from "react-router-dom";
 import s from "./Navigation.module.scss";
 
-const Navigation = ({ handleOpenActivePage }) => {
+const setActiveLinkClass = ({ isActive }) =>
+  isActive ? `${s.navLink} ${s.activeLink}` : s.navLink;
+
+const Navigation = () => {
   return (
     <nav className={s.nav}>
       <ul className={s.navList}>
         <li className={s.navItem}>
-          <a
+          <NavLink to="/" className={setActiveLinkClass}>
+            Home
+          </NavLink>
+        </li>
+        <li className={s.navItem}>
+          {/* <a
             href="/"
             className={s.navLink}
             onClick={(e) => {
@@ -15,10 +23,13 @@ const Navigation = ({ handleOpenActivePage }) => {
             }}
           >
             Counter
-          </a>
+          </a> */}
+          <NavLink to="/counter" className={setActiveLinkClass}>
+            Counter
+          </NavLink>
         </li>
         <li className={s.navItem}>
-          <a
+          {/* <a
             href="/"
             className={s.navLink}
             onClick={(e) => {
@@ -27,10 +38,13 @@ const Navigation = ({ handleOpenActivePage }) => {
             }}
           >
             Todo
-          </a>
+          </a> */}
+          <NavLink to="/todo" className={setActiveLinkClass}>
+            Todo
+          </NavLink>
         </li>
         <li className={s.navItem}>
-          <a
+          {/* <a
             href="/"
             className={s.navLink}
             onClick={(e) => {
@@ -39,15 +53,23 @@ const Navigation = ({ handleOpenActivePage }) => {
             }}
           >
             News
-          </a>
+          </a> */}
+          <NavLink to="/news" className={setActiveLinkClass}>
+            News
+          </NavLink>
+        </li>
+        <li className={s.navItem}>
+          <NavLink to="/top-news" className={setActiveLinkClass}>
+            Top News
+          </NavLink>
         </li>
       </ul>
     </nav>
   );
 };
 
-Navigation.propTypes = {
-  handleOpenActivePage: PropTypes.func.isRequired,
-};
+// Navigation.propTypes = {
+//   handleOpenActivePage: PropTypes.func.isRequired,
+// };
 
 export default Navigation;

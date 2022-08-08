@@ -42,8 +42,7 @@ const NewsGallery = ({ searchInput }) => {
 };
 
 NewsGallery.propTypes = {
-  setModalInfo: PropTypes.func.isRequired,
-  searchInput: PropTypes.func.isRequired,
+  searchInput: PropTypes.string.isRequired,
 };
 
 export default NewsGallery;

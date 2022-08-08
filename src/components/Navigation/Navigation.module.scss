@@ -23,4 +23,9 @@
   border: 1px solid yellowgreen;
   border-radius: 5px;
   text-decoration: none;
+
+  &.activeLink {
+    border-color: red;
+    color: red;
+  }
 }
