@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Counter from "./Counter/Counter";
-import Navigation from "./Navigation/Navigation";
 import NewsPage from "../pages/NewsPage";
 import TodoPage from "../pages/TodoPage";
 import HomePage from "../pages/HomePage";
 import TopNewspage from "../pages/TopNewsPage";
 import CountryNews from "./CountryNews/CountryNews";
-import MainWrapper from "./MainWrapper/MainWrapper";
+import MainWrapper from "./MainLayout/MainLayout";
 
 const App = () => {
   return (
