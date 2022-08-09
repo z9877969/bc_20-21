@@ -1,17 +1,30 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import Counter from "./Counter/Counter";
-import NewsPage from "../pages/NewsPage";
-import TodoPage from "../pages/TodoPage";
-import HomePage from "../pages/HomePage";
-import TopNewspage from "../pages/TopNewsPage";
-import CountryNews from "./CountryNews/CountryNews";
-import MainWrapper from "./MainLayout/MainLayout";
+import { lazy, useEffect } from "react";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import SharedLayout from "./SharedLayout/SharedLayout";
+
+const Counter = lazy(() => import("./Counter/Counter"));
+const NewsPage = lazy(() => import("../pages/NewsPage"));
+const TodoPage = lazy(() => import("../pages/TodoPage"));
+const HomePage = lazy(() => import("../pages/HomePage"));
+const TopNewspage = lazy(() => import("../pages/TopNewsPage"));
+const CountryNews = lazy(() => import("./CountryNews/CountryNews"));
+
+const CustomNavigate = ({ to, ...options }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(to, options);
+  }, []);
+
+  return null;
+};
 
 const App = () => {
   return (
     <>
+      {/* /uk/learn/5407857/31547/31586/textbook */}
       <Routes>
-        <Route path="/" element={<MainWrapper />}>
+        <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="todo" element={<TodoPage />} />
           <Route path="counter" element={<Counter />} />
@@ -19,8 +32,9 @@ const App = () => {
           <Route path="top-news" element={<TopNewspage />}>
             <Route path=":country" element={<CountryNews />} />
           </Route>
+          <Route path="error" element={<h1>Some Error</h1>} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<CustomNavigate to="/" />} />
       </Routes>
     </>
   );

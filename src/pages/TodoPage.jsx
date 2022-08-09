@@ -22,9 +22,13 @@ const TodoPage = () => {
 
   // const firstRenderRef = useRef(true);
 
-  const addTodo = useCallback((newTodo) => {
+  // const addTodo = useCallback((newTodo) => {
+  //   setTodo((prevTodo) => [...prevTodo, newTodo]);
+  // }, []);
+
+  const addTodo = (newTodo) => {
     setTodo((prevTodo) => [...prevTodo, newTodo]);
-  }, []);
+  };
 
   const removeTodo = (id) => {
     setTodo((prevTodo) => prevTodo.filter((el) => el.id !== id));
