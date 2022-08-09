@@ -2,7 +2,7 @@
 
 ### 1.redux-devtools
 
-### 2.React State VS Redux State (https://2.bp.blogspot.com/-yj3h5POKq3c/XCCGUoQ0RLI/AAAAAAAAQ88/_5VpIs-O97IT0wKDySPbToD2xOfRO9C2gCLcBGAs/s1600/Bildschirmfoto-2017-12-01-um-08.53.32.png)
+### 2.(React State VS Redux State) [https://2.bp.blogspot.com/-yj3h5POKq3c/XCCGUoQ0RLI/AAAAAAAAQ88/_5VpIs-O97IT0wKDySPbToD2xOfRO9C2gCLcBGAs/s1600/Bildschirmfoto-2017-12-01-um-08.53.32.png]
 
 ### 3.розподіл логіки та структури
 
