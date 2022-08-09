@@ -2,25 +2,16 @@ import PropTypes from "prop-types";
 import s from "./TodoList.module.scss";
 import TodoItem from "../TodoItem/TodoItem";
 
-const TodoList = ({ todo, removeTodo, updateTodoStatus }) => {
+const TodoList = ({ todo = [] }) => {
   return (
     <ul className={s.container}>
       {todo.map((el) => (
-        <TodoItem
-          key={el.id}
-          {...el}
-          removeTodo={removeTodo}
-          updateTodoStatus={updateTodoStatus}
-        />
+        <TodoItem key={el.id} {...el} />
       ))}
     </ul>
   );
 };
 
-TodoList.propTypes = {
-  todo: PropTypes.arrayOf(PropTypes.object).isRequired,
-  removeTodo: PropTypes.func.isRequired,
-  updateTodoStatus: PropTypes.func.isRequired,
-};
+TodoList.propTypes = {};
 
 export default TodoList;

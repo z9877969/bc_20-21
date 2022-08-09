@@ -2,7 +2,6 @@ import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import s from "./TodoForm.module.scss";
 import { useForm } from "../../hooks/useForm";
-import { useNavigate } from "react-router-dom";
 
 const curDate = moment().format("YYYY-MM-DD");
 
@@ -19,17 +18,12 @@ const initialForm = {
   priority: "",
 };
 
-const TodoForm = ({ addTodo }) => {
-  const navigate = useNavigate();
-
+const TodoForm = () => {
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: initialForm,
     onSubmit: (values) => {
       const data = { ...values, id: uuidv4(), isDoneStatus: false };
-      addTodo(data);
-      // navigate(-2)
-      // navigate("/")
-      navigate("/counter?q=cat&id=21&color=red");
+      console.log(data);
     },
   });
 

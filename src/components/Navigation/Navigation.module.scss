@@ -25,7 +25,7 @@
   text-decoration: none;
 
   &.activeLink {
-    border-color: red;
-    color: red;
+    border: 2px solid rgb(240, 237, 45);
+    color: rgb(30, 16, 16);
   }
 }

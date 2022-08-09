@@ -2,16 +2,7 @@ import PropTypes from "prop-types";
 import s from "../TodoList/TodoList.module.scss";
 import sprite from "../../assets/icons/sprite.svg";
 
-const TodoItem = ({
-  title,
-  descr,
-  id,
-  date,
-  priority,
-  isDoneStatus,
-  updateTodoStatus,
-  removeTodo,
-}) => {
+const TodoItem = ({ title, descr, id, date, priority, isDoneStatus }) => {
   return (
     <li className={s.toDoItem}>
       <p className={s.date}>{date}</p>
@@ -22,15 +13,10 @@ const TodoItem = ({
       </p>
 
       <label className={s.status}>
-        <input
-          type="checkbox"
-          name="status"
-          checked={isDoneStatus}
-          onChange={() => updateTodoStatus(id)}
-        />
+        <input type="checkbox" name="status" checked={isDoneStatus} />
         Done
       </label>
-      <button className={s.todoBtn} onClick={() => removeTodo(id)}>
+      <button className={s.todoBtn}>
         <svg className={s.icon}>
           <use href={sprite + "#icon-trash"}></use>
         </svg>
@@ -46,8 +32,6 @@ TodoItem.propTypes = {
   date: PropTypes.string.isRequired,
   priority: PropTypes.string.isRequired,
   isDoneStatus: PropTypes.bool.isRequired,
-  updateTodoStatus: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

@@ -25,16 +25,6 @@ const Navigation = () => {
             Todo
           </NavLink>
         </li>
-        <li className={s.navItem}>
-          <NavLink to="/news" state={location} className={setActiveLinkClass}>
-            News
-          </NavLink>
-        </li>
-        <li className={s.navItem}>
-          <NavLink to="/top-news" className={setActiveLinkClass}>
-            Top News
-          </NavLink>
-        </li>
       </ul>
     </nav>
   );

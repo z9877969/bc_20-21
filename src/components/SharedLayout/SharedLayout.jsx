@@ -11,7 +11,6 @@ const SharedLayout = () => {
       <Suspense fallback={<h1>Loading...</h1>}>
         <Outlet />
       </Suspense>
-      <footer>Some footer content</footer>
     </>
   );
 };
