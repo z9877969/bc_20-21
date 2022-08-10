@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import s from "../TodoList/TodoList.module.scss";
 import sprite from "../../assets/icons/sprite.svg";
+import { removeTodo, updateStatusTodo } from "../../redux/todo/todoActions";
 
 const TodoItem = ({ title, descr, id, date, priority, isDoneStatus }) => {
+  const dispatch = useDispatch();
+
   return (
     <li className={s.toDoItem}>
       <p className={s.date}>{date}</p>
@@ -13,10 +17,10 @@ const TodoItem = ({ title, descr, id, date, priority, isDoneStatus }) => {
       </p>
 
       <label className={s.status}>
-        <input type="checkbox" name="status" checked={isDoneStatus} />
+        <input type="checkbox" name="status" onChange={() => dispatch(updateStatusTodo(id))} checked={isDoneStatus} />
         Done
       </label>
-      <button className={s.todoBtn}>
+      <button className={s.todoBtn} onClick={() => dispatch(removeTodo(id))}>
         <svg className={s.icon}>
           <use href={sprite + "#icon-trash"}></use>
         </svg>

@@ -1,7 +1,9 @@
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
 import s from "./TodoForm.module.scss";
 import { useForm } from "../../hooks/useForm";
+import { addTodo } from "../../redux/todo/todoActions";
 
 const curDate = moment().format("YYYY-MM-DD");
 
@@ -19,11 +21,14 @@ const initialForm = {
 };
 
 const TodoForm = () => {
+  const dispatch = useDispatch();
+
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: initialForm,
     onSubmit: (values) => {
       const data = { ...values, id: uuidv4(), isDoneStatus: false };
       console.log(data);
+      dispatch(addTodo(data));
     },
   });
 

@@ -3,6 +3,7 @@ import ToDoList from "../components/TodoList/TodoList";
 import TodoFilter from "../components/TodoFilter/TodoFilter";
 
 const TodoPage = () => {
+  console.log("TODOPAGE");
   return (
     <div>
       <ToDoForm />
