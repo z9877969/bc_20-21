@@ -8,7 +8,7 @@ import s from "./Counter.module.scss";
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter);
+  const counter = useSelector((state) => state.counter.value);
   const message = useSelector((state) => state.message);
 
   return (
