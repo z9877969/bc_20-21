@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
+import LangSelect from "../LangSelect/LangSelect";
 import s from "./Navigation.module.scss";
 
 const setActiveLinkClass = ({ isActive }) =>
@@ -26,6 +27,7 @@ const Navigation = () => {
           </NavLink>
         </li>
       </ul>
+      <LangSelect />
     </nav>
   );
 };

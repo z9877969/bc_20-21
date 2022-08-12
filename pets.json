@@ -1,0 +1,15 @@
+{
+  "news": [],
+  "services": [],
+  "market": {
+    "categories": [],
+    "notices": []
+  },
+  "auth": {
+
+  },
+  "user": {
+    "userName": "user_name",
+    "favorite": []
+  }
+}

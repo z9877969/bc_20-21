@@ -12,8 +12,11 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import counterReducer from "./counter/counterReducer";
-import todo from "./todo/todoReducer";
+// import counterReducer from "./counter/counterReducer";
+import counterReducer from "./counter/counterSlice";
+// import todo from "./todo/todoReducer";
+import todo from "./todo/todoSlice";
+import lang from "./lang/langSlice";
 
 const todoPersistConfig = {
   key: "todo",
@@ -23,23 +26,19 @@ const todoPersistConfig = {
   whitelist: ["items"],
 };
 
-const counterPersistConfig = {
-  key: "counter",
-  version: 1,
+const langPersistConfig = {
+  key: "lang",
   storage,
   whitelist: ["value"],
 };
 
 const todoPersistedReducer = persistReducer(todoPersistConfig, todo);
-const counterPersistedReducer = persistReducer(
-  counterPersistConfig,
-  counterReducer
-);
 
 export const store = configureStore({
   reducer: {
-    counter: counterPersistedReducer,
+    counter: counterReducer,
     todo: todoPersistedReducer,
+    lang: persistReducer(langPersistConfig, lang),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

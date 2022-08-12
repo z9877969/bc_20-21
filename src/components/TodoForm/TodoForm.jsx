@@ -1,8 +1,14 @@
-import moment from "moment";
-import { useDispatch } from "react-redux";
+import moment, { lang } from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+// import { v4 as uuidv4 } from "uuid";
 import s from "./TodoForm.module.scss";
 import { useForm } from "../../hooks/useForm";
-import { addTodo } from "../../redux/todo/todoActions";
+// import { addTodo } from "../../redux/todo/todoActions";
+import { addTodo } from "../../redux/todo/todoSlice";
+import langOptions from "../../utils/options/langOptions";
+
+const { todoForm: todoFormLang } = langOptions;
 
 const curDate = moment().format("YYYY-MM-DD");
 
@@ -22,17 +28,19 @@ const initialForm = {
 const TodoForm = () => {
   const dispatch = useDispatch();
 
+  const lang = useSelector((state) => state.lang.value);
+
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: initialForm,
     onSubmit: (values) => {
-      dispatch(addTodo(values));
+      dispatch(addTodo({ ...values, isDoneStatus: false, id: nanoid() }));
     },
   });
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <label className={s.label}>
-        <span> Date </span>
+        <span> {todoFormLang.date[lang]} </span>
         <input
           className={s.input}
           type="date"
@@ -42,7 +50,7 @@ const TodoForm = () => {
         />
       </label>
       <label className={s.label}>
-        <span> Title </span>
+        <span> {todoFormLang.title[lang]} </span>
         <input
           className={s.input}
           type="text"
@@ -52,7 +60,7 @@ const TodoForm = () => {
         />
       </label>
       <label className={s.label}>
-        <span> Description </span>
+        <span> {todoFormLang.descr[lang]} </span>
         <input
           className={s.input}
           type="text"
@@ -74,7 +82,7 @@ const TodoForm = () => {
             onChange={handleChange}
           />
           <label className={`${s.label} ${s.radio}`} htmlFor="formRadioLow">
-            Low
+            {todoFormLang.priority.low[lang]}
           </label>
         </div>
         <div className={s.radioWrapper}>
@@ -88,7 +96,7 @@ const TodoForm = () => {
             onChange={handleChange}
           />
           <label className={`${s.label} ${s.radio}`} htmlFor="formRadioMedium">
-            Medium
+            {todoFormLang.priority.medium[lang]}
           </label>
         </div>
         <div className={s.radioWrapper}>
@@ -102,7 +110,7 @@ const TodoForm = () => {
             onChange={handleChange}
           />
           <label className={`${s.label} ${s.radio}`} htmlFor="formRadioHigh">
-            High
+            {todoFormLang.priority.high[lang]}
           </label>
         </div>
       </div>
