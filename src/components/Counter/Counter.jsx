@@ -1,9 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   counterDecrement,
-//   counterIncrement,
-//   counterReset,
-// } from "../../redux/counter/counterActions";
 import { increment, decrement, reset } from "../../redux/counter/counterSlice";
 import s from "./Counter.module.scss";
 

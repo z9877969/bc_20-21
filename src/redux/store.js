@@ -1,5 +1,3 @@
-// import { createStore, combineReducers } from "redux";
-// import { composeWithDevTools } from "@redux-devtools/extension";
 import { configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
@@ -12,9 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// import counterReducer from "./counter/counterReducer";
 import counterReducer from "./counter/counterSlice";
-// import todo from "./todo/todoReducer";
 import todo from "./todo/todoSlice";
 import lang from "./lang/langSlice";
 
@@ -22,7 +18,6 @@ const todoPersistConfig = {
   key: "todo",
   version: 1,
   storage,
-  // blacklist: ["filter"]
   whitelist: ["items"],
 };
 

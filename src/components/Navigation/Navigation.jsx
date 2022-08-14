@@ -6,7 +6,6 @@ const setActiveLinkClass = ({ isActive }) =>
   isActive ? `${s.navLink} ${s.activeLink}` : s.navLink;
 
 const Navigation = () => {
-  const location = useLocation(); // location-HomePage
 
   return (
     <nav className={s.nav}>

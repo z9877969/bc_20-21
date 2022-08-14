@@ -1,7 +1,6 @@
-import moment, { lang } from "moment";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-// import { v4 as uuidv4 } from "uuid";
 import s from "./TodoForm.module.scss";
 import { useForm } from "../../hooks/useForm";
 // import { addTodo } from "../../redux/todo/todoActions";

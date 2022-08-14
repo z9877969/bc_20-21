@@ -1,3 +1,0 @@
-https://newsapi.org/v2/top-headlines?apiKey=42ee593af8484a5a82756cb35b09ccd6&country=ua
-
-
