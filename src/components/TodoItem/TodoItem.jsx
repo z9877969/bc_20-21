@@ -6,7 +6,8 @@ import sprite from "../../assets/icons/sprite.svg";
 //   removeTodo,
 //   updateStatusTodo,
 // } from "../../redux/todo/todoActions";
-import { removeTodo, updateStatusTodo } from "../../redux/todo/todoSlice";
+import { updateStatusTodo } from "../../redux/todo/todoSlice";
+import { removeTodo } from "../../redux/todo/todoOperations";
 import langOptions from "../../utils/options/langOptions";
 
 const { todoItem: todoItemLang, todoForm: todoFormLang } = langOptions;
@@ -14,6 +15,8 @@ const { todoItem: todoItemLang, todoForm: todoFormLang } = langOptions;
 const TodoItem = ({ title, descr, id, date, priority, isDoneStatus }) => {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.lang.value);
+
+  const handleRemove = () => dispatch(removeTodo(id));
 
   return (
     <li className={s.toDoItem}>
@@ -34,7 +37,7 @@ const TodoItem = ({ title, descr, id, date, priority, isDoneStatus }) => {
         />
         {todoItemLang.status[lang]}
       </label>
-      <button className={s.todoBtn} onClick={() => dispatch(removeTodo(id))}>
+      <button className={s.todoBtn} onClick={handleRemove}>
         <svg className={s.icon}>
           <use href={sprite + "#icon-trash"}></use>
         </svg>

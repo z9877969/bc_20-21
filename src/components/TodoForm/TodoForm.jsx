@@ -4,7 +4,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import s from "./TodoForm.module.scss";
 import { useForm } from "../../hooks/useForm";
 // import { addTodo } from "../../redux/todo/todoActions";
-import { addTodo } from "../../redux/todo/todoSlice";
+import { addTodo } from "../../redux/todo/todoOperations";
 import langOptions from "../../utils/options/langOptions";
 
 const { todoForm: todoFormLang } = langOptions;
@@ -28,11 +28,12 @@ const TodoForm = () => {
   const dispatch = useDispatch();
 
   const lang = useSelector((state) => state.lang.value);
+  const isLoading = useSelector((state) => state.todo.isLoading);
 
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: initialForm,
     onSubmit: (values) => {
-      dispatch(addTodo({ ...values, isDoneStatus: false, id: nanoid() }));
+      dispatch(addTodo({ ...values, isDoneStatus: false }));
     },
   });
 
@@ -115,6 +116,7 @@ const TodoForm = () => {
       </div>
       <button className={s.submit} type="submit">
         Ok
+        {isLoading && <h3>Loading...</h3>}
       </button>
     </form>
   );
