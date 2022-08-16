@@ -1,11 +1,12 @@
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
 import s from "./TodoForm.module.scss";
 import { useForm } from "../../hooks/useForm";
 // import { addTodo } from "../../redux/todo/todoActions";
 import { addTodo } from "../../redux/todo/todoOperations";
 import langOptions from "../../utils/options/langOptions";
+import { getLang } from "../../redux/lang/langSelector";
+import { getIsLoading } from "../../redux/todo/todoSelectors";
 
 const { todoForm: todoFormLang } = langOptions;
 
@@ -27,8 +28,8 @@ const initialForm = {
 const TodoForm = () => {
   const dispatch = useDispatch();
 
-  const lang = useSelector((state) => state.lang.value);
-  const isLoading = useSelector((state) => state.todo.isLoading);
+  const lang = useSelector(getLang);
+  const isLoading = useSelector(getIsLoading);
 
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: initialForm,

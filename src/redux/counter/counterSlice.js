@@ -2,11 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const counterSlice = createSlice({
   name: "counter",
-  initialState: {
-    value: 54,
-  },
+  initialState: 54,
   reducers: {
     qwe(state, action) {
+      // {type: "counter/qwe"}
       return { value: 154 };
     },
     increment(state, { payload }) {
@@ -22,4 +21,4 @@ const counterSlice = createSlice({
 });
 
 export const { qwe, increment, decrement, reset } = counterSlice.actions;
-export default counterSlice.reducer; // 
+export default counterSlice.reducer; //

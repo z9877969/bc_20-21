@@ -2,19 +2,16 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import s from "../TodoList/TodoList.module.scss";
 import sprite from "../../assets/icons/sprite.svg";
-// import {
-//   removeTodo,
-//   updateStatusTodo,
-// } from "../../redux/todo/todoActions";
 import { updateStatusTodo } from "../../redux/todo/todoSlice";
 import { removeTodo } from "../../redux/todo/todoOperations";
 import langOptions from "../../utils/options/langOptions";
+import { getLang } from "../../redux/lang/langSelector";
 
 const { todoItem: todoItemLang, todoForm: todoFormLang } = langOptions;
 
 const TodoItem = ({ title, descr, id, date, priority, isDoneStatus }) => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.lang.value);
+  const lang = useSelector(getLang);
 
   const handleRemove = () => dispatch(removeTodo(id));
 

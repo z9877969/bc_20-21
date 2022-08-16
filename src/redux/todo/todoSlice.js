@@ -1,31 +1,96 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { reset } from "../counter/counterSlice";
+import { addTodo, getTodo, removeTodo } from "./todoOperations";
+// import { changeFilter } from "./todoActions";
 
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
     items: [],
     filter: "all",
-    // isLoading: false,
+    isLoading: false,
+    error: null,
   },
   reducers: {
-    addTodo(state, { payload }) {
+    addTodo: (state, { payload }) => {
+      // todo/addTodo
       return { ...state, items: [...state.items, payload] };
       //   state.items.push(payload);
-    },
-    removeTodo(state, { payload }) {
-      return { ...state, items: state.items.filter((el) => el.id !== payload) };
-    },
-    updateStatusTodo(state, { payload }) {
-      state.items = state.items.map((el) =>
-        el.id !== payload ? el : { ...el, isDoneStatus: !el.isDoneStatus }
-      );
-    },
-    changeFilter(state, { payload }) {
+    }, // todo/addTodo
+    changeFilter: (state, { payload }) => {
       state.filter = payload;
     },
   },
+  extraReducers: {
+    [getTodo.pending]: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    },
+    [getTodo.fulfilled]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        items: payload,
+      };
+    },
+    [getTodo.rejected]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+      };
+    },
+    [addTodo.pending]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    },
+    [addTodo.fulfilled]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        items: [...state.items, payload],
+      };
+    },
+    [addTodo.rejected]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+      };
+    },
+    [removeTodo.pending]: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [removeTodo.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.items = state.items.filter((item) => item.id !== payload);
+    },
+    [removeTodo.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    [reset]: (state) => {
+      state.items = [];
+      state.isLoading = false;
+      state.error = null;
+      state.filter = "all";
+    },
+    // [changeFilter]: (state, { payload }) => {
+    //   state.filter = payload;
+    // },
+  },
 });
 
-export const { addTodo, removeTodo, updateStatusTodo, changeFilter } =
-  todoSlice.actions;
+console.log(getTodo.pending());
+console.log(todoSlice.actions.changeFilter("low"));
+console.log(reset());
+
+export const { updateStatusTodo, changeFilter } = todoSlice.actions;
 export default todoSlice.reducer;

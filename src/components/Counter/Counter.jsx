@@ -1,10 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
+import { getCounter } from "../../redux/counter/counterSelector";
 import { increment, decrement, reset } from "../../redux/counter/counterSlice";
 import s from "./Counter.module.scss";
 
+
+
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter.value);
+  const counter = useSelector(getCounter);
   const message = useSelector((state) => state.message);
 
   return (

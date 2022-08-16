@@ -3,13 +3,15 @@ import { priorityOptions } from "../TodoForm/TodoForm";
 // import { changeFilter } from "../../redux/todo/todoActions";
 import { changeFilter } from "../../redux/todo/todoSlice";
 import langOptions from "../../utils/options/langOptions";
+import { getLang } from "../../redux/lang/langSelector";
+import { getFilter } from "../../redux/todo/todoSelectors";
 
 const { todoFilter: todoFilterLang } = langOptions;
 
 const TodoFilter = () => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.lang.value);
-  const filter = useSelector((state) => state.todo.filter);
+  const lang = useSelector(getLang);
+  const filter = useSelector(getFilter);
 
   const handleChange = (e) => dispatch(changeFilter(e.target.value));
 

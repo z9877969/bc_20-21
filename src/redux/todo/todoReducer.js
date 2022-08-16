@@ -1,21 +1,11 @@
 import { combineReducers, createReducer } from "@reduxjs/toolkit";
-import {
-  addTodoError,
-  addTodoRequest,
-  addTodoSuccess,
-  changeFilter,
-  getTodoError,
-  getTodoRequest,
-  getTodoSuccess,
-  removeTodoError,
-  removeTodoRequest,
-  removeTodoSuccess,
-} from "./todoActions";
+import { getTodo, addTodo, removeTodo } from "./todoOperations";
+import { changeFilter } from "./todoActions";
 
 const itemsReducer = createReducer([], {
-  [getTodoSuccess]: (_, { payload }) => payload,
-  [addTodoSuccess]: (state, { payload }) => [...state, payload],
-  [removeTodoSuccess]: (state, { payload }) =>
+  [getTodo.fulfilled]: (_, { payload }) => payload,
+  [addTodo.fulfilled]: (state, { payload }) => [...state, payload],
+  [removeTodo.fulfilled]: (state, { payload }) =>
     state.filter((el) => el.id !== payload),
   // [updateStatusTodo]: (state, { payload }) =>
   //   state.map((el) =>
@@ -28,26 +18,26 @@ const filterReducer = createReducer("all", {
 });
 
 const isLoadingReducer = createReducer(false, {
-  [getTodoRequest]: () => true,
-  [getTodoSuccess]: () => false,
-  [getTodoError]: () => false,
-  [addTodoRequest]: () => true,
-  [addTodoSuccess]: () => false,
-  [addTodoError]: () => false,
-  [removeTodoRequest]: () => true,
-  [removeTodoSuccess]: () => false,
-  [removeTodoError]: () => false,
+  [getTodo.pending]: () => true,
+  [getTodo.fulfilled]: () => false,
+  [getTodo.rejected]: () => false,
+  [addTodo.pending]: () => true,
+  [addTodo.fulfilled]: () => false,
+  [addTodo.rejected]: () => false,
+  [removeTodo.pending]: () => true,
+  [removeTodo.fulfilled]: () => false,
+  [removeTodo.rejected]: () => false,
 });
 
 const setError = (_, { payload }) => payload;
 
 const errorReducer = createReducer(null, {
-  [getTodoError]: setError,
-  [getTodoRequest]: () => null,
-  [addTodoError]: setError,
-  [addTodoRequest]: () => null,
-  [removeTodoError]: setError,
-  [removeTodoRequest]: () => null,
+  [getTodo.rejected]: setError,
+  [getTodo.pending]: () => null,
+  [addTodo.rejected]: setError,
+  [addTodo.pending]: () => null,
+  [removeTodo.rejected]: setError,
+  [removeTodo.pending]: () => null,
 });
 
 const todoReducer = combineReducers({
