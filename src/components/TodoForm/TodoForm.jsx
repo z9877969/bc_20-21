@@ -2,7 +2,6 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./TodoForm.module.scss";
 import { useForm } from "../../hooks/useForm";
-// import { addTodo } from "../../redux/todo/todoActions";
 import { addTodo } from "../../redux/todo/todoOperations";
 import langOptions from "../../utils/options/langOptions";
 import { getLang } from "../../redux/lang/langSelector";

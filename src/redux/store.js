@@ -10,11 +10,10 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// import logger from "redux-logger";
 import counterReducer from "./counter/counterSlice";
 import todo from "./todo/todoSlice";
-// import todo from "./todo/todoReducer";
 import lang from "./lang/langSlice";
+import auth from "./auth/authSlice";
 
 const langPersistConfig = {
   key: "lang",
@@ -22,22 +21,15 @@ const langPersistConfig = {
   whitelist: ["value"],
 };
 
-const m = (store) => (next) => (action) => {
-  // const {dispatch, getState} = store;
-  next(action);
+const authPersistConfig = {
+  key: "token",
+  storage,
+  whitelist: ["idToken"],
 };
-
-// const thunk = (store) => (next) => (action) => {
-//   if (typeof action === "function") {
-//     const { dispatch, getState } = store;
-//     action(dispatch, getState);
-//     return;
-//   }
-//   next(action);
-// };
 
 export const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, auth),
     counter: counterReducer,
     todo,
     lang: persistReducer(langPersistConfig, lang),
@@ -47,7 +39,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(m),
+    }),
   devTools: process.env.NODE_ENV !== "production",
 });
 

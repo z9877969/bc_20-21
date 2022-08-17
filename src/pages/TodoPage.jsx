@@ -13,7 +13,7 @@ const TodoPage = () => {
 
   useEffect(() => {
     !isTodo && dispatch(getTodo());
-  }, [dispatch]);
+  }, [dispatch, isTodo]);
 
   return (
     <div>

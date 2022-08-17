@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { reset } from "../counter/counterSlice";
 import { addTodo, getTodo, removeTodo } from "./todoOperations";
-// import { changeFilter } from "./todoActions";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -13,10 +12,8 @@ const todoSlice = createSlice({
   },
   reducers: {
     addTodo: (state, { payload }) => {
-      // todo/addTodo
       return { ...state, items: [...state.items, payload] };
-      //   state.items.push(payload);
-    }, // todo/addTodo
+    },
     changeFilter: (state, { payload }) => {
       state.filter = payload;
     },
@@ -82,15 +79,8 @@ const todoSlice = createSlice({
       state.error = null;
       state.filter = "all";
     },
-    // [changeFilter]: (state, { payload }) => {
-    //   state.filter = payload;
-    // },
   },
 });
-
-console.log(getTodo.pending());
-console.log(todoSlice.actions.changeFilter("low"));
-console.log(reset());
 
 export const { updateStatusTodo, changeFilter } = todoSlice.actions;
 export default todoSlice.reducer;

@@ -1,7 +1,8 @@
-# Lesson-16(operations)
+# Lesson-18(operations)
 
-### 1. структура запитів(request, success, error)
-### 2. вирішення запитів для бібліотеки управління станом - middlewares:
-#### - logger,
-#### - redux-thunk - https://d33wubrfki0l68.cloudfront.net/08d01ed85246d3ece01963408572f3f6dfb49d41/4bc12/assets/images/reduxasyncdataflowdiagram-d97ff38a0f4da0f327163170ccc13e80.gif
-### 3. operation
+### 1. авторизація, принцип взаємодії клієнт - сервер. token.
+### 2. рендер по умові isAuth
+### 3. редірект на авторизовані/не_авторизовані маршрути
+### 4. token -> localStorage
+### 5. getCurUser
+### 6. logOut /наступне заняття
