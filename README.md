@@ -16,4 +16,4 @@
 
 ### 6. getCurUser
 
-### 7. logOut
+### 7. logOut // наступне заняття
