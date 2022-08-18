@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser, loginUser, getCurUser } from "./authOperations";
+import {
+  registerUser,
+  loginUser,
+  getCurUser,
+  refreshToken,
+} from "./authOperations";
 
 const authSlice = createSlice({
   name: "auth",
@@ -71,21 +76,21 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-    // [refreshToken.pending]: (state) => {
-    //   state.isLoading = true;
-    //   state.error = null;
-    // },
-    // [refreshToken.fulfilled]: (state, { payload }) => {
-    //   const { idToken, localId, refreshToken } = payload;
-    //   state.isLoading = false;
-    //   state.idToken = idToken;
-    //   state.refreshToken = refreshToken;
-    //   state.user = { ...state.user, localId };
-    // },
-    // [refreshToken.rejected]: (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = payload;
-    // },
+    [refreshToken.pending]: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [refreshToken.fulfilled]: (state, { payload }) => {
+      const { idToken, localId, refreshToken } = payload;
+      state.isLoading = false;
+      state.idToken = idToken;
+      state.refreshToken = refreshToken;
+      state.user = { ...state.user, localId };
+    },
+    [refreshToken.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
   },
 });
 
