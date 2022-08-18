@@ -24,7 +24,7 @@ const langPersistConfig = {
 const authPersistConfig = {
   key: "token",
   storage,
-  whitelist: ["idToken"],
+  whitelist: ["refreshToken", "idToken"],
 };
 
 export const store = configureStore({

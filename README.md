@@ -1,19 +1,9 @@
-# Lesson-18(auth)
+# Lesson-19(auth.2)
 
-### 1. авторизація, принцип взаємодії клієнт - сервер. token.
+### 1. Logout
 
-### 2. рендер по умові isAuth:
+### 2. operations with request to DB
 
-#### - routes
+### 3. public/private routes
 
-#### - navigation
-
-### 3. RegisterForm -> AuthForm, nav for form 
-
-### 4. редірект на авторизовані/не_авторизовані маршрути
-
-### 5. token -> localStorage
-
-### 6. getCurUser
-
-### 7. logOut
+### 4. ErrorHandlerOperation + RefreshTokenOperation

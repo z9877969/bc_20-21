@@ -9,7 +9,6 @@ export const getIsLoading = (state) => state.todo.isLoading;
 export const getFilteredTodo = createSelector(
   [getTodo, getFilter],
   (items, filter) => {
-    console.log("WITH reselect");
     const todo =
       filter === "all"
         ? items

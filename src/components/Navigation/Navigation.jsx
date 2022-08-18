@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getIsAuth } from "../../redux/auth/authSelector";
+import { logOut } from "../../redux/auth/authSlice";
 import LangSelect from "../LangSelect/LangSelect";
 import s from "./Navigation.module.scss";
 
@@ -8,6 +9,8 @@ const setActiveLinkClass = ({ isActive }) =>
   isActive ? `${s.navLink} ${s.activeLink}` : s.navLink;
 
 const Navigation = () => {
+  const dispatch = useDispatch();
+
   const isAuth = useSelector(getIsAuth);
 
   return (
@@ -46,6 +49,7 @@ const Navigation = () => {
           </>
         )}
       </ul>
+      {isAuth && <button onClick={() => dispatch(logOut())}>Logout</button>}
       <LangSelect />
     </nav>
   );

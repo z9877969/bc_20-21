@@ -1,41 +1,33 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { addTodoApi, getTodoApi, removeTodoApi } from "../../utils/firebaseApi";
 
-// export const getTodo = () => (dispatch) => {
-//   dispatch(getTodoRequest());
+export const getTodo = createAsyncThunk("getTodo", async (_, thunkApi) => {
+  const {
+    auth: {
+      idToken,
+      user: { localId },
+    },
+  } = thunkApi.getState();
 
-//   getTodoApi() // -> promise to webApi
-//     .then((todo) => dispatch(getTodoSuccess(todo)))
-//     .catch((err) => dispatch(getTodoError(err.message)));
-// };
-
-export const getTodo = createAsyncThunk("getTodo", async (param, thunkApi) => {
-  console.log(thunkApi);
-  // -> getTodo/pending
   try {
-    const todo = await getTodoApi();
-    return todo; // -> getTodo/fullfield
+    const todo = await getTodoApi({ localId, idToken });
+    return todo;
   } catch (error) {
-    // return error.message; // qwe/fulfield
-    return thunkApi.rejectWithValue(error.message); // -> getTodo/rejected
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 
-// getTodo("65465465")
-
-// export const addTodo = (todo) => (dispatch) => {
-//   dispatch(addTodoRequest());
-
-//   addTodoApi(todo)
-//     .then((newTodo) => dispatch(addTodoSuccess(newTodo)))
-//     .catch((err) => dispatch(addTodoError(err.message)));
-// };
-
 export const addTodo = createAsyncThunk(
   "addTodo",
-  async (todo, { rejectWithValue }) => {
+  async (todo, { rejectWithValue, getState }) => {
+    const {
+      auth: {
+        idToken,
+        user: { localId },
+      },
+    } = getState();
     try {
-      const newTodo = await addTodoApi(todo);
+      const newTodo = await addTodoApi({ todo, localId, idToken });
       return newTodo;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -43,23 +35,17 @@ export const addTodo = createAsyncThunk(
   }
 );
 
-// addTodo({})
-
-// export const removeTodo = (id) => (dispatch) => {
-//   dispatch(removeTodoRequest());
-
-//   removeTodoApi(id)
-//     .then((id) => dispatch(removeTodoSuccess(id)))
-//     .catch((err) => dispatch(removeTodoError(err.message)));
-// };
-
 export const removeTodo = createAsyncThunk(
   "removeTodo",
-  async (id, { rejectWithValue }) => {
+  async (id, { rejectWithValue, getState }) => {
+    const {
+      idToken,
+      user: { localId },
+    } = getState().auth;
     try {
-      await removeTodoApi(id);
+      await removeTodoApi({ id, localId, idToken });
 
-      return id; // removeTodo/fullfield
+      return id;
     } catch (error) {
       return rejectWithValue(error.message);
     }

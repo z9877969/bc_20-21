@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { reset } from "../counter/counterSlice";
 import { addTodo, getTodo, removeTodo } from "./todoOperations";
+import { logOut } from "../auth/authSlice";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -11,9 +12,6 @@ const todoSlice = createSlice({
     error: null,
   },
   reducers: {
-    addTodo: (state, { payload }) => {
-      return { ...state, items: [...state.items, payload] };
-    },
     changeFilter: (state, { payload }) => {
       state.filter = payload;
     },
@@ -40,7 +38,7 @@ const todoSlice = createSlice({
         error: payload,
       };
     },
-    [addTodo.pending]: (state, { payload }) => {
+    [addTodo.pending]: (state) => {
       return {
         ...state,
         isLoading: true,
@@ -78,6 +76,12 @@ const todoSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.filter = "all";
+    },
+    [logOut]: (state) => {
+      state.items = [];
+      state.filter = "all";
+      state.isLoading = false;
+      state.error = null;
     },
   },
 });
