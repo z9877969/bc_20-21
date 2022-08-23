@@ -6,6 +6,7 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import { getCurUser } from "../redux/auth/authOperations";
 import { getMustCurUser } from "../redux/auth/authSelector";
+import FileSubmitPage from "../pages/FileSubmitPage";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const CounterPage = lazy(() => import("../pages/CounterPage"));
@@ -27,6 +28,10 @@ const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<PublicRoute component={HomePage} />} />
+        <Route
+          path="file"
+          element={<PublicRoute component={FileSubmitPage} />}
+        />
         <Route path="todo" element={<PrivateRoute component={TodoPage} />} />
         <Route
           path="counter"

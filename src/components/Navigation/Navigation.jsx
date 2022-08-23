@@ -20,6 +20,9 @@ const Navigation = () => {
           <NavLink to="/" className={setActiveLinkClass}>
             Home
           </NavLink>
+          <NavLink to="/file" className={setActiveLinkClass}>
+            File
+          </NavLink>
         </li>
         {isAuth ? (
           <>

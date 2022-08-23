@@ -115,8 +115,7 @@ const TodoForm = () => {
         </div>
       </div>
       <button className={s.submit} type="submit">
-        Ok
-        {isLoading && <h3>Loading...</h3>}
+        {isLoading ? "Loading..." : "Ok"}
       </button>
     </form>
   );
